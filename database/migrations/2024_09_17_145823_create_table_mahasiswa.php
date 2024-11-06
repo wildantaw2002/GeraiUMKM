@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('provinsi_mahasiswa');
             $table->string('kota_mahasiswa');
             $table->string('kecamatan_mahasiswa');
-            $table->string('kelurahan_mahasiswa');
+            $table->string('kelurahan_mahasiswa')->nullable();
             $table->string('kode_pos');
             $table->string('alamat_mahasiswa');
             $table->timestamps();

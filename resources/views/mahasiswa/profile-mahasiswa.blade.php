@@ -158,12 +158,14 @@
         <div class="profile-header">
             <div class="row align-items-center">
                 <div class="col-md-3 text-center">
+                    @if ($mahasiswa && $mahasiswa->foto_profil != null)
                     <img src="{{ asset('uploads/mahasiswa/' . $mahasiswa->foto_profil) }}" alt="Profile Image"
                         class="profile-image mb-3">
+                    @endif
                 </div>
                 <div class="col-md-9">
-                    <h1 class="display-5 mb-2">{{ $mahasiswa->nama_mahasiswa }}</h1>
-                    <p class="lead mb-3">{{ $mahasiswa->universitas }}</p>
+                    <h1 class="display-5 mb-2">{{ $mahasiswa ? $mahasiswa->nama_mahasiswa : '-' }}</h1>
+                    <p class="lead mb-3">{{ $mahasiswa ? $mahasiswa->universitas : '-' }}</p>
                     {{-- <form action="{{ route('mahasiswa.profile.edit', $mahasiswa->id_user) }}" method="get"> --}}
 
                     <a href="{{ route('mahasiswa.profile.edit', $mahasiswa->id_user) }}">

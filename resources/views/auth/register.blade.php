@@ -34,7 +34,7 @@
                         <div class="w-full pt-4">
                             <label for="nama"
                                 class="block mb-2 text-sm font-medium text-white">Nama
-                                Panjang</label>
+                                Lengkap</label>
                             <input type="text" name="nama" id="nama"
                                 class="bg-gray-700 border border-gray-600 text-white sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 @error('nama') border-red-500 @enderror"
                                 required>
