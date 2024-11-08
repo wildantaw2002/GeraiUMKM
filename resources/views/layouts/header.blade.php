@@ -1,113 +1,114 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="author" content="Untree.co">
-    <link href="{{ asset('assets/img/favicon.png') }}" rel="icon" type="image/png">
-    {{-- <link href="{{ asset('assets/img/favicon.png') }}" rel="POS UMKM"> --}}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta name="description" content="" />
-    <meta name="keywords" content="bootstrap, bootstrap4" />
-
-    <!-- Bootstrap CSS -->
-    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link href="{{ asset('css/tiny-slider.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-     <!-- Bootstrap 5 CSS -->
-    <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-
-     {{-- @vite('resources/css/app.css') --}}
-    <title>Post UMKM</title>
-    <style>
-        .card {
-            min-height: 2px;
-            /* Sesuaikan sesuai kebutuhan */
-        }
-    </style>
-    <script>
-
-    </script>
+    <title>Gerai UMKM</title>
+    <link href="{{ asset('assets/img/favicon.png') }}" rel="icon" type="image/png">
+    <link rel="stylesheet" href="{{ asset('assets/css/customStyle.css') }}">
+    <!-- Tailwind CSS -->
+    @vite('resources/css/app.css')
+    @vite('resources/css/style.css')
 </head>
 
-<body>
+<body class="bg-white text-gray-800 font-poppins">
 
-    <!-- Start Header/Navigation -->
-   <nav class="custom-navbar navbar navbar-expand-md navbar-dark bg-biru-gelap shadow-lg"
-    arial-label="Furni navigation bar" style="background: linear-gradient(to right, #0DBDE5, #2DB08B)">
+  <!-- Navbar -->
+<header class="w-full fixed top-0 bg-white shadow z-10">
+    <div class="container mx-auto py-4 flex items-center justify-between px-6">
+        
+        <!-- Logo Section -->
+        <div class="flex items-center space-x-2">
+            <a href="{{ route('index') }}">
+                <img src="{{ asset('assets/img/logoText.png') }}" alt="Gerai Logo" class="h-10 w-auto">
+            </a>
+        </div>
 
-    <div class="container">
-        <a class="navbar-brand" href="{{ route('index') }}">
-            <img src="{{ asset('assets/img/logo.png') }}" alt="" width="60">
-        </a>
-        <a class="navbar-brand" href="index.html">Pos<span>UMKM</span></a>
-
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsFurni"
-            aria-controls="navbarsFurni" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarsFurni">
-            <ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
-                <li class="nav-item {{ request()->routeIs('index') ? 'active' : '' }}">
-                    <a class="nav-link" href="{{ route('index') }}">Beranda</a>
+        <!-- Centered Menu for Desktop -->
+        <div class="hidden md:flex flex-grow justify-center" id="navbarsFurni">
+            <ul class="flex space-x-6 text-gray-400 text-sm">
+                <li class="nav-item {{ request()->routeIs('index') ? 'text-teal-700' : '' }}">
+                    <a class="nav-link hover:text-teal-700" href="{{ route('index') }}">Beranda</a>
                 </li>
-                {{-- EVENT --}}
-                <li class="nav-item {{ request()->routeIs('event') ? 'active' : '' }}">
-                    <a class="nav-link" href="{{ route('event') }}">Artikel</a>
+                <li class="nav-item {{ request()->routeIs('event') ? 'text-teal-700' : '' }}">
+                    <a class="nav-link hover:text-teal-700" href="{{ route('event') }}">Artikel</a>
                 </li>
-                {{-- PROJECT --}}
-                {{-- UMKM --}}
-                <li class="nav-item {{ request()->routeIs('umkm.index.beranda') ? 'active' : '' }}">
-                    <a class="nav-link" href="{{ route('umkm.index.beranda') }}">UMKM</a>
+                <li class="nav-item {{ request()->routeIs('umkm.index.beranda') ? 'text-teal-700' : '' }}">
+                    <a class="nav-link hover:text-teal-700" href="{{ route('umkm.index.beranda') }}">UMKM</a>
                 </li>
                 @if (Auth::check() && Auth::user()->role === 'mahasiswa')
-                    <li class="nav-item {{ request()->routeIs('mahasiswa.pekerjaan') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ route('mahasiswa.pekerjaan') }}">Project</a>
+                    <li class="nav-item {{ request()->routeIs('mahasiswa.pekerjaan') ? 'text-teal-700' : '' }}">
+                        <a class="nav-link hover:text-teal-700" href="{{ route('mahasiswa.pekerjaan') }}">Project</a>
                     </li>
-                    {{-- CHAT --}}
-                    <li class="nav-item {{ request()->routeIs('mahasiswa.chat') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ route('mahasiswa.chat') }}">Chat</a>
+                    <li class="nav-item {{ request()->routeIs('mahasiswa.chat') ? 'text-teal-700' : '' }}">
+                        <a class="nav-link hover:text-teal-700" href="{{ route('mahasiswa.chat') }}">Chat</a>
                     </li>
-                    {{-- PROFILE --}}
-                    <li class="nav-item {{ request()->routeIs('mahasiswa.profile') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ route('mahasiswa.profile') }}">Profile</a>
+                    <li class="nav-item {{ request()->routeIs('mahasiswa.profile') ? 'text-teal-700' : '' }}">
+                        <a class="nav-link hover:text-teal-700" href="{{ route('mahasiswa.profile') }}">Profile</a>
                     </li>
-                @endif
-
-            </ul>
-
-            <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
-                @if (Auth::check())
-                    <!-- Jika user sudah login -->
-                    <li><a class="nav-link" href="#"><img src="{{ asset('images/user.svg') }}"></a></li>
-                    <li>
-                        <form action="{{ route('logout') }}" method="POST">
-                            @csrf
-                            <button type="submit" class="btn btn-secondary me-2">Logout</button>
-                        </form>
-                    </li>
-                @else
-                    <!-- Jika user belum login -->
-                    <li><a class="nav-link" href="{{ route('login') }}"><img
-                                src="{{ asset('images/user.svg') }}"></a></li>
-                    <li><a class="btn btn-secondary me-2" href="{{ route('login') }}">Login</a></li>
                 @endif
             </ul>
         </div>
+
+        <!-- Right Section for Desktop -->
+        <div class="hidden md:flex items-center space-x-4">
+            @if (Auth::check())
+                <!-- When user is logged in -->
+                <a href="#" class="text-gray-600"><img src="{{ asset('images/user.svg') }}" class="h-6 w-6"></a>
+                <form action="{{ route('logout') }}" method="POST" class="inline">
+                    @csrf
+                    <button type="submit" class="bg-teal-700 text-white px-4 py-2 rounded-full font-semibold">Logout</button>
+                </form>
+            @else
+                <!-- When user is not logged in -->
+                <a href="{{ route('login') }}" class="text-teal-700 font-semibold">Daftar</a>
+                <a href="{{ route('login') }}" class="bg-teal-700 text-white px-4 py-2 rounded-full font-semibold">Masuk</a>
+            @endif
+        </div>
+
+        <!-- Mobile Hamburger Icon -->
+        <button id="hamburger" class="md:hidden flex flex-col space-y-1">
+            <span class="w-8 h-1 bg-black"></span>
+            <span class="w-8 h-1 bg-black"></span>
+            <span class="w-8 h-1 bg-black"></span>
+        </button>
     </div>
 
-</nav>
-
-    <!-- End Header/Navigation -->
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="fixed inset-y-0 right-0 w-64 bg-white p-6 hidden z-20 md:hidden">
+        <button id="closeMenu" class="text-gray-600 text-2xl">&times;</button>
+        <nav class="mt-6 space-y-4 text-gray-600 font-semibold text-sm">
+            <a href="{{ route('index') }}" class="block hover:text-teal-700 {{ request()->routeIs('index') ? 'text-teal-700' : '' }}">Beranda</a>
+            <a href="{{ route('event') }}" class="block hover:text-teal-700 {{ request()->routeIs('event') ? 'text-teal-700' : '' }}">Artikel</a>
+            <a href="{{ route('umkm.index.beranda') }}" class="block hover:text-teal-700 {{ request()->routeIs('umkm.index.beranda') ? 'text-teal-700' : '' }}">UMKM</a>
+            @if (Auth::check() && Auth::user()->role === 'mahasiswa')
+                <a href="{{ route('mahasiswa.pekerjaan') }}" class="block hover:text-teal-700 {{ request()->routeIs('mahasiswa.pekerjaan') ? 'text-teal-700' : '' }}">Project</a>
+                <a href="{{ route('mahasiswa.chat') }}" class="block hover:text-teal-700 {{ request()->routeIs('mahasiswa.chat') ? 'text-teal-700' : '' }}">Chat</a>
+                <a href="{{ route('mahasiswa.profile') }}" class="block hover:text-teal-700 {{ request()->routeIs('mahasiswa.profile') ? 'text-teal-700' : '' }}">Profile</a>
+            @endif
+            <div class="mt-6">
+                @if (Auth::check())
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="w-full bg-teal-700 text-white px-4 py-2 rounded-full font-semibold">Logout</button>
+                    </form>
+                @else
+                    <a href="{{ route('login') }}" class="block text-teal-700 font-semibold">Daftar</a>
+                    <a href="{{ route('login') }}" class="w-full bg-teal-700 text-white px-4 py-2 rounded-full font-semibold mt-4 inline-block text-center">Masuk</a>
+                @endif
+            </div>
+        </nav>
+    </div>
+</header>
 
     @yield('content')
 
+    <script src="{{ asset('assets/js/app.js')}}"></script>
+
+
 </body>
+
 
 </html>

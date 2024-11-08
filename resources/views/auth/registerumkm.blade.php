@@ -1,157 +1,127 @@
-<!doctype html>
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <link href="{{ asset('assets/img/favicon.png') }}" rel="icon" type="image/png">
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register UMKM Gerai UMKM</title>
+    <link rel="stylesheet" href="./css/style.css">
     @vite('resources/css/app.css')
 </head>
+<body class="bg-white min-h-screen flex font-poppins">
 
-<body class="bg-gradient-to-r from-[#0DBDE5] to-[#2DB08B] text-blue-900">
-    <div class="flex flex-col items-center justify-center min-h-screen p-4 sm:p-6 lg:p-8">
-        <a href="#" class="flex items-center mb-6 text-2xl font-semibold text-white">
-            <img class="w-8 h-8 mr-2" src="{{ asset('assets/img/logo.png') }}" alt="logo">
-            POS UMKM
-        </a>
-        <div class="w-full max-w-4xl bg-gray-800 rounded-lg shadow dark:border dark:border-gray-700">
-            <div class="p-4 sm:p-6 md:p-8 space-y-4">
-                <h1 class="text-xl font-bold leading-tight tracking-tight text-white md:text-2xl">
-                    Buat Akun UMKM
-                </h1>
-                @if ($errors->any())
-                    <div class="bg-red-100 text-red-700 p-4 rounded-lg">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
-                <form class="space-y-4" action="{{ route('umkmregister') }}" method="POST"
-                    enctype="multipart/form-data">
-                    @csrf
-                    <div class="gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                        <!-- Email -->
-                        <div class="w-full pt-4">
-                            <label for="email"
-                                class="block mb-2 text-sm font-medium text-white">Email</label>
-                            <input type="email" name="email" id="email"
-                                class="bg-gray-700 border {{ $errors->has('email') ? 'border-red-500' : 'border-gray-600' }} text-white sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                placeholder="name@company.com" required>
-                            @error('email')
-                                <p class="text-sm text-red-600">{{ $message }}</p>
-                            @enderror
-                        </div>
+<!-- Left Side (White Background with Registration Form) -->
+<div class="w-full md:w-1/2 h-full bg-white flex items-center justify-center">
+    <div class="w-full max-w-lg p-8 bg-white rounded-lg ">
 
-                        <!-- Password -->
-                        <div class="w-full pt-4">
-                            <label for="password"
-                                class="block mb-2 text-sm font-medium text-white">Password</label>
-                            <input type="password" name="password" id="password"
-                                class="bg-gray-700 border {{ $errors->has('password') ? 'border-red-500' : 'border-gray-600' }} text-white sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                placeholder="••••••••" required>
-                            @error('password')
-                                <p class="text-sm text-red-600">{{ $message }}</p>
-                            @enderror
-                        </div>
-
-                        <!-- Nama UMKM -->
-                        <div class="w-full pt-4">
-                            <label for="nama_umkm"
-                                class="block mb-2 text-sm font-medium text-white">Nama UMKM</label>
-                            <input type="text" name="nama_umkm" id="nama_umkm"
-                                class="bg-gray-700 border border-gray-600 text-white sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                required>
-                        </div>
-                        <!-- Kategori UMKM -->
-                        <div class="w-full pt-4">
-                            <label for="kategori_umkm"
-                                class="block mb-2 text-sm font-medium text-white">Kategori
-                                UMKM</label>
-                            <select name="kategori" id="kategori_umkm"
-                                class="bg-gray-700 border border-gray-600 text-white sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                required>
-                                <option value="">Pilih Kategori</option>
-                                <option value="F&B">F&B</option>
-                                <option value="Retail">Retail</option>
-                                <option value="Jasa">Jasa</option>
-                                <option value="Produksi">Produksi</option>
-                                <option value="Pendidikan">Pendidikan</option>
-                                <option value="Kesehatan dan Kecantikan">Kesehatan dan Kecantikan</option>
-                                <option value="Teknologi dan Digital">Teknologi dan Digital</option>
-                                <option value="Pariwisata dan Hospitality">Pariwisata dan Hospitality</option>
-                                <option value="Agribisnis">Agribisnis</option>
-                                <option value="Kesenian dan Hiburan">Kesenian dan Hiburan</option>
-                                <option value="Lainnya">Lainnya</option>
-                            </select>
-                        </div>
-
-
-                        <!-- Informasi Pemilik -->
-                        <div class="w-full pt-4">
-                            <label for="informasi_pemilik"
-                                class="block mb-2 text-sm font-medium text-white">
-                                Pemilik UMKM
-                            </label>
-                            <textarea name="informasi_pemilik" id="informasi_pemilik" rows="3"
-                                class="bg-gray-700 border border-gray-600 text-white sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                required></textarea>
-                        </div>
-
-                        <div class="w-full pt-4">
-                            <label for="alamat"
-                                class="block mb-2 text-sm font-medium text-white">Alamat</label>
-                            <input type="text" name="alamat" id="alamat"
-                                class="bg-gray-700 border border-gray-600 text-white sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                required>
-                        </div>
-
-                        <!-- Deskripsi -->
-                        <div class="w-full pt-4">
-                            <label for="deskripsi"
-                                class="block mb-2 text-sm font-medium text-white">Deskripsi</label>
-                            <textarea name="deskripsi" id="deskripsi" rows="3"
-                                class="bg-gray-700 border border-gray-600 text-white sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                required></textarea>
-                        </div>
-
-
-
-                        <!-- Foto Profil -->
-                        <div class="w-full pt-4">
-                            <label for="foto_profil"
-                                class="block mb-2 text-sm font-medium text-white">Foto Profil
-                                (Opsional)</label>
-                            <input type="file" name="foto_profil" id="foto_profil" accept="image/*"
-                                class="bg-gray-700 border border-gray-600 text-white sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                        </div>
-
-                        <div class="w-full pt-4">
-                            <!-- Submit Button -->
-                            <button type="submit"
-                                class="w-full text-white bg-gray-800 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-600 font-medium rounded-lg text-sm px-5 py-2.5 text-center transition duration-300 ease-in-out transform hover:scale-105 active:scale-95 border border-gray-600">
-                                Daftar UMKM
-                            </button>
-
-                        </div>
-
-                        <div class="w-full pt-4">
-                            <p class="text-sm font-light text-gray-400">
-                                Sudah Punya Akun? <a href="{{ route('login') }}"
-                                    class="font-medium text-primary-500 hover:underline">Login
-                                    Disini</a>
-                            </p>
-                        </div>
-
-                    </div>
-
-
-                </form>
-            </div>
+        <!-- Logo -->
+        <div class="flex justify-center mb-6 mt-12">
+           <a href="{{ route('index') }}"> <img src="{{ asset('assets/img/logoText.png') }}" alt="POS UMKM Logo" style="height: 45px;"></a>
         </div>
+
+        <!-- Form Heading -->
+        <p class="text-center text-gray-500 mb-8">buat akun anda sebagai UMKM</p>
+
+        <!-- Error Notification -->
+        @if ($errors->any())
+            <div class="bg-red-100 text-red-700 p-4 rounded-lg">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+        <!-- UMKM Registration Form -->
+        <form action="{{ route('umkmregister') }}" method="POST" enctype="multipart/form-data" class="space-y-4">
+            @csrf
+
+            <!-- Email and Password -->
+            <div class="flex space-x-4">
+                <div class="relative w-1/2">
+                    <label for="email" class="absolute -top-3 left-3 bg-white px-1 text-gray-400 font-bold">Email</label>
+                    <input type="email" id="email" name="email" placeholder="name@company.com" class="w-full p-3 border-2 border-gray-300 rounded-lg placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-2 @error('email') border-red-500 @enderror" required>
+                    @error('email')
+                        <p class="text-sm text-red-600">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <div class="relative w-1/2">
+                    <label for="password" class="absolute -top-3 left-3 bg-white px-1 text-gray-400 font-bold">Password</label>
+                    <input type="password" id="password" name="password" placeholder="••••••••" class="w-full p-3 border-2 border-gray-300 rounded-lg placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-2 @error('password') border-red-500 @enderror" required>
+                    @error('password')
+                        <p class="text-sm text-red-600">{{ $message }}</p>
+                    @enderror
+                </div>
+            </div>
+
+            <!-- Nama UMKM -->
+            <div class="relative">
+                <label for="nama_umkm" class="absolute -top-3 left-3 bg-white px-1 text-gray-400 font-bold">Nama UMKM</label>
+                <input type="text" id="nama_umkm" name="nama_umkm" class="w-full p-3 border-2 border-gray-300 rounded-lg placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-2" required>
+            </div>
+
+            <!-- Kategori UMKM and Pemilik UMKM -->
+            <div class="flex space-x-4">
+                <div class="relative w-1/2">
+                    <label for="kategori_umkm" class="absolute -top-3 left-3 bg-white px-1 text-gray-400 font-bold">Kategori UMKM</label>
+                    <select id="kategori_umkm" name="kategori" class="w-full p-3 border-2 border-gray-300 rounded-lg text-gray-900 focus:outline-none focus:ring-2" required>
+                        <option value="">Pilih Kategori</option>
+                        <option value="F&B">F&B</option>
+                        <option value="Retail">Retail</option>
+                        <option value="Jasa">Jasa</option>
+                        <option value="Produksi">Produksi</option>
+                        <option value="Pendidikan">Pendidikan</option>
+                        <option value="Kesehatan dan Kecantikan">Kesehatan dan Kecantikan</option>
+                        <option value="Teknologi dan Digital">Teknologi dan Digital</option>
+                        <option value="Pariwisata dan Hospitality">Pariwisata dan Hospitality</option>
+                        <option value="Agribisnis">Agribisnis</option>
+                        <option value="Kesenian dan Hiburan">Kesenian dan Hiburan</option>
+                        <option value="Lainnya">Lainnya</option>
+                    </select>
+                </div>
+                <div class="relative w-1/2">
+                    <label for="informasi_pemilik" class="absolute -top-3 left-3 bg-white px-1 text-gray-400 font-bold">Pemilik UMKM</label>
+                    <input type="text" id="informasi_pemilik" name="informasi_pemilik" placeholder="Nama Pemilik" class="w-full p-3 border-2 border-gray-300 rounded-lg placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-2" required>
+                </div>
+            </div>
+
+            <!-- Alamat Lengkap -->
+            <div class="relative">
+                <label for="alamat" class="absolute -top-3 left-3 bg-white px-1 text-gray-400 font-bold">Alamat Lengkap</label>
+                <input type="text" id="alamat" name="alamat" class="w-full p-3 border-2 border-gray-300 rounded-lg placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-2" required>
+            </div>
+
+            <!-- Deskripsi -->
+            <div class="relative">
+                <label for="deskripsi" class="absolute -top-3 left-3 bg-white px-1 text-gray-400 font-bold">Deskripsi</label>
+                <textarea id="deskripsi" name="deskripsi" class="w-full p-3 border-2 border-gray-300 rounded-lg placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-2" required></textarea>
+            </div>
+
+            <!-- Upload Foto Profile -->
+            <div class="relative">
+                <label for="foto_profil" class="absolute -top-3 left-3 bg-white px-1 text-gray-400 font-bold">Upload Foto Profile</label>
+                <input type="file" id="foto_profil" name="foto_profil" accept="image/*" class="w-full p-3 border-2 border-gray-300 rounded-lg text-gray-900 focus:outline-none focus:ring-2">
+            </div>
+
+            <!-- Daftar Button -->
+            <button type="submit" class="w-full p-3 bg-blue-400 text-white font-semibold rounded-lg hover:bg-blue-500 transition">Daftar</button>
+        </form>
+
+        <div class="text-center mt-4">
+            <p class="text-sm text-gray-600">Sudah Punya Akun? <a href="{{ route('login') }}" class="text-blue-500 font-semibold hover:underline">Login Disini</a></p>
+        </div>
+
     </div>
+</div>
+
+<!-- Right Side (Gradient Background with Centered Logo) - Hidden on Small Screens -->
+<div class="hidden md:flex w-full md:w-1/2 min-h-screen bg-gradient-to-r from-custom-start to-custom-end items-center justify-center">
+    <img src="{{ asset('assets/img/logo.png') }}" alt="Logo" class="w-1/3">
+</div>
+
 </body>
+
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const provinsiSelect = document.getElementById('provinsi');
