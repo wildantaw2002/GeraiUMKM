@@ -204,7 +204,7 @@ class AuthController extends Controller
 
     private function handleProfilePhoto(Request $request)
     {
-        return $request->hasFile('foto_profil') ? renameAndStoreFile($request->file('foto_profil'), 'umkm/foto_profil', 'profil') : null;
+        return $request->hasFile('foto_profil') ? $this->renameAndStoreFile($request->file('foto_profil'), 'umkm/foto_profil', 'profil') : null;
     }
 
     private function createUser(Request $request)

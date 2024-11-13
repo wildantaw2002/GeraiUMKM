@@ -89,7 +89,7 @@
         <!-- Completed Projects Section -->
         <div class="bg-white p-6 rounded-lg shadow-md mt-6">
             <h3 class="text-xl font-bold mb-4">Completed Projects</h3>
-            @php
+        @php
             $completedProjects = $mahasiswa
                 ->applies()
                 ->where('status', 'completed')
