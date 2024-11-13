@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,152 +8,189 @@
     <link rel="stylesheet" href="./css/style.css">
     @vite('resources/css/app.css')
 </head>
+
 <body class="bg-white min-h-screen flex font-poppins">
 
-<!-- Left Side (White Background with Registration Form) -->
-<div class="w-full md:w-1/2 h-full bg-white flex items-center justify-center">
-    <div class="w-full max-w-lg p-8 py-10 bg-white rounded-lg ">
-
-        <!-- Logo -->
-        <div class="flex justify-center mt-12">
-           <a href="{{ route('index') }}"><img src="{{ asset('assets/img/logoText.png') }}" alt="POS UMKM Logo" style="height: 45px;"></a>
-        </div>
-
-        <p class="text-center text-gray-500 mb-8">Buat akun Anda sebagai mahasiswa</p>
-
+    <!-- Left Side (White Background with Registration Form) -->
+    <div class="w-full md:w-1/2 h-full bg-white flex items-center justify-center">
+       
         <!-- Error Notification -->
         @if ($errors->any())
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
+            <strong class="font-bold">Oops!</strong>
+            <span class="block sm:inline">Ada beberapa masalah dengan input Anda.</span>
+        </div>
+        @endif
+
+        <!-- Registration Form -->
+        <div class="w-full max-w-lg p-8 py-10 bg-white rounded-lg shadow-md">
+            <!-- Logo -->
+            <div class="flex justify-center mb-6">
+                <a href="{{ route('index') }}"><img src="{{ asset('assets/img/logoText.png') }}" alt="POS UMKM Logo" style="height: 45px;"></a>
+            </div>
+
+            <p class="text-center text-gray-500 mb-8">Buat akun Anda sebagai mahasiswa</p>
+
+            <!-- Error Notification -->
+            @if ($errors->any())
             <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
                 <strong class="font-bold">Oops!</strong>
                 <span class="block sm:inline">Ada beberapa masalah dengan input Anda.</span>
             </div>
-        @endif
+            @endif
 
-        <!-- Registration Form -->
-        <form action="{{ route('registermahasiswa') }}" method="POST" enctype="multipart/form-data" class="space-y-4">
-            @csrf
-
-            <!-- Nama Lengkap -->
-            <div class="relative">
-                <label for="nama" class="absolute -top-3 left-3 bg-white px-1 text-gray-400 font-thin">Nama lengkap</label>
-                <input type="text" id="nama" name="nama" placeholder="John" class="w-full p-3 border-2 border-gray-300 rounded-lg placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-2 @error('nama') border-red-500 @enderror" required>
-                @error('nama')
-                    <p class="text-red-500 text-xs italic">{{ $message }}</p>
-                @enderror
-            </div>
-
-            <!-- Email and Password -->
-            <div class="flex space-x-4">
-                <div class="relative w-1/2">
-                    <label for="email" class="absolute -top-3 left-3 bg-white px-1 text-gray-400 font-thin">Email</label>
-                    <input type="email" id="email" name="email" placeholder="name@company.com" class="w-full p-3 border-2 border-gray-300 rounded-lg placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-2 @error('email') border-red-500 @enderror" required>
-                    @error('email')
+            <!-- Registration Form -->
+            <form class="space-y-4" action="{{ route('registermahasiswa') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="grid grid-cols-1 gap-4">
+                    <!-- Nama Panjang -->
+                    <div>
+                        <label for="nama" class="block text-sm font-medium text-gray-700">Nama Panjang</label>
+                        <input type="text" name="nama" id="nama" required
+                            class="mt-1 block w-full rounded-md border-transparent shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 @error('nama') border-red-500 @enderror">
+                        @error('nama')
                         <p class="text-red-500 text-xs italic">{{ $message }}</p>
-                    @enderror
-                </div>
-                <div class="relative w-1/2">
-                    <label for="password" class="absolute -top-3 left-3 bg-white px-1 text-gray-400 font-thin">Password</label>
-                    <input type="password" id="password" name="password" placeholder="Doe" class="w-full p-3 border-2 border-gray-300 rounded-lg placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-2 @error('password') border-red-500 @enderror" required>
-                    @error('password')
+                        @enderror
+                    </div>
+
+                    <!-- Email -->
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                        <input type="email" name="email" id="email" placeholder="name@company.com" required
+                            class="mt-1 block w-full rounded-md border-transparent shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 @error('email') border-red-500 @enderror">
+                        @error('email')
                         <p class="text-red-500 text-xs italic">{{ $message }}</p>
-                    @enderror
-                </div>
-            </div>
+                        @enderror
+                    </div>
 
-            <!-- University -->
-            <div class="relative">
-                <label for="universitas" class="absolute -top-3 left-3 bg-white px-1 text-gray-400 font-thin">Asal Universitas</label>
-                <input type="text" id="universitas" name="universitas" class="w-full p-3 border-2 border-gray-300 rounded-lg placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-2 @error('universitas') border-red-500 @enderror" required>
-                @error('universitas')
-                    <p class="text-red-500 text-xs italic">{{ $message }}</p>
-                @enderror
-            </div>
-
-            <!-- Tanggal Lahir and Jenis Kelamin -->
-            <div class="flex space-x-4">
-                <div class="relative w-1/2">
-                    <label for="tanggal_lahir" class="absolute -top-3 left-3 bg-white px-1 text-gray-400 font-thin">Tanggal Lahir</label>
-                    <input type="date" id="tanggal_lahir" name="tanggal_lahir" class="w-full p-3 border-2 border-gray-300 rounded-lg placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-2 @error('tanggal_lahir') border-red-500 @enderror" required>
-                    @error('tanggal_lahir')
+                    <!-- Password -->
+                    <div>
+                        <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                        <input type="password" name="password" id="password" placeholder="••••••••" required
+                            class="mt-1 block w-full rounded-md border-transparent shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 @error('password') border-red-500 @enderror">
+                        @error('password')
                         <p class="text-red-500 text-xs italic">{{ $message }}</p>
-                    @enderror
-                </div>
-                <div class="relative w-1/2">
-                    <label for="jenis_kelamin" class="absolute -top-3 left-3 bg-white px-1 text-gray-400 font-thin">Jenis Kelamin</label>
-                    <select id="jenis_kelamin" name="jenis_kelamin" class="w-full p-3 border-2 border-gray-300 rounded-lg text-gray-900 focus:outline-none focus:ring-2" required>
-                        <option value="L">Laki-laki</option>
-                        <option value="P">Perempuan</option>
-                    </select>
-                </div>
-            </div>
+                        @enderror
+                    </div>
 
-            <!-- No Telp and Pekerjaan -->
-            <div class="flex space-x-4">
-                <div class="relative w-1/2">
-                    <label for="no_telp" class="absolute -top-3 left-3 bg-white px-1 text-gray-400 font-thin">No Telp</label>
-                    <input type="text" id="no_telp" name="no_telp" class="w-full p-3 border-2 border-gray-300 rounded-lg placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-2 @error('no_telp') border-red-500 @enderror" required>
-                    @error('no_telp')
+                    <!-- Asal Universitas -->
+                    <div>
+                        <label for="universitas" class="block text-sm font-medium text-gray-700">Asal Universitas</label>
+                        <input type="text" name="universitas" id="universitas" required
+                            class="mt-1 block w-full rounded-md border-transparent shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 @error('universitas') border-red-500 @enderror">
+                        @error('universitas')
                         <p class="text-red-500 text-xs italic">{{ $message }}</p>
-                    @enderror
-                </div>
-                <div class="relative w-1/2">
-                    <label for="pekerjaan" class="absolute -top-3 left-3 bg-white px-1 text-gray-400 font-thin">Pekerjaan</label>
-                    <input type="text" id="pekerjaan" name="pekerjaan" class="w-full p-3 border-2 border-gray-300 rounded-lg placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-2 @error('pekerjaan') border-red-500 @enderror" required>
-                    @error('pekerjaan')
+                        @enderror
+                    </div>
+
+                    <!-- Tanggal Lahir -->
+                    <div>
+                        <label for="tanggal_lahir" class="block text-sm font-medium text-gray-700">Tanggal Lahir</label>
+                        <input type="date" name="tanggal_lahir" id="tanggal_lahir" required
+                            class="mt-1 block w-full rounded-md border-transparent shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 @error('tanggal_lahir') border-red-500 @enderror">
+                        @error('tanggal_lahir')
                         <p class="text-red-500 text-xs italic">{{ $message }}</p>
-                    @enderror
+                        @enderror
+                    </div>
+
+                    <!-- Jenis Kelamin -->
+                    <div>
+                        <label for="jenis_kelamin" class="block text-sm font-medium text-gray-700">Jenis Kelamin</label>
+                        <select name="jenis_kelamin" id="jenis_kelamin" required
+                            class="mt-1 block w-full rounded-md border-transparent shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50">
+                            <option value="">Pilih Jenis Kelamin</option>
+                            <option value="L">Laki-Laki</option>
+                            <option value="P">Perempuan</option>
+                        </select>
+                    </div>
+
+                    <!-- Nomor Telepon -->
+                    <div>
+                        <label for="no_hp" class="block text-sm font-medium text-gray-700">Nomor Telepon</label>
+                        <input type="tel" name="no_hp" id="no_hp" required
+                            class="mt-1 block w-full rounded-md border-transparent shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50">
+                    </div>
+
+                    <!-- Pemasukan -->
+                    <div>
+                        <label for="penghasilan" class="block text-sm font-medium text-gray-700">Pemasukan</label>
+                        <input type="number" name="penghasilan" id="penghasilan" required
+                            class="mt-1 block w-full rounded-md border-transparent shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50">
+                    </div>
+
+                    <!-- Pekerjaan -->
+                    <div>
+                        <label for="pekerjaan" class="block text-sm font-medium text-gray-700">Pekerjaan</label>
+                        <input type="text" name="pekerjaan" id="pekerjaan" required
+                            class="mt-1 block w-full rounded-md border-transparent shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50">
+                    </div>
+
+                    <!-- Upload Foto Profil -->
+                    <div>
+                        <label for="foto_profil" class="block text-sm font-medium text-gray-700">Upload Foto Profil</label>
+                        <input type="file" name="foto_profil" id="foto_profil" accept="image/*" required
+                            class="mt-1 block w-full rounded-md border-transparent shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50">
+                    </div>
+
+                    <!-- Provinsi -->
+                    <div>
+                        <label for="provinsi" class="block text-sm font-medium text-gray-700">Provinsi</label>
+                        <select name="provinsi" id="provinsi" required
+                            class="mt-1 block w-full rounded-md border-transparent shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50">
+                            <option value="">Pilih Provinsi</option>
+                        </select>
+                    </div>
+
+                    <!-- Kota -->
+                    <div>
+                        <label for="kota" class="block text-sm font-medium text-gray-700">Kota</label>
+                        <select name="kota" id="kota" required
+                            class="mt-1 block w-full rounded-md border-transparent shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50">
+                            <option value="">Pilih Kota</option>
+                        </select>
+                    </div>
+
+                    <!-- Kecamatan -->
+                    <div>
+                        <label for="kecamatan" class="block text-sm font-medium text-gray-700">Kecamatan</label>
+                        <select name="kecamatan" id="kecamatan" required
+                            class="mt-1 block w-full rounded-md border-transparent shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50">
+                            <option value="">Pilih Kecamatan</option>
+                        </select>
+                    </div>
+
+                    <!-- Kode Pos -->
+                    <div>
+                        <label for="kode_pos" class="block text-sm font-medium text-gray-700">Kode Pos</label>
+                        <input type="text" name="kode_pos" id="kode_pos" required
+                            class="mt-1 block w-full rounded-md border-transparent shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50">
+                    </div>
+
+                    <!-- Alamat Lengkap -->
+                    <div>
+                        <label for="alamat" class="block text-sm font-medium text-gray-700">Alamat Lengkap</label>
+                        <textarea name="alamat" id="alamat" rows="3" required
+                            class="mt-1 block w-full rounded-md border-transparent shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"></textarea>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Upload Foto Profile -->
-            <div class="relative">
-                <label for="foto_profil" class="absolute -top-3 left-3 bg-white px-1 text-gray-400 font-thin">Upload Foto Profile</label>
-                <input type="file" id="foto_profil" name="foto_profil" accept="image/*" class="w-full p-3 border-2 border-gray-300 rounded-lg text-gray-900 focus:outline-none focus:ring-2" required>
-            </div>
 
-            <!-- Provinsi, Kota, Kecamatan -->
-            <div class="flex space-x-4">
-                <div class="relative w-1/3">
-                    <label for="provinsi" class="absolute -top-3 left-3 bg-white px-1 text-gray-400 font-thin">Provinsi</label>
-                    <select id="provinsi" name="provinsi" class="w-full p-3 border-2 border-gray-300 rounded-lg text-gray-900 focus:outline-none focus:ring-2" required>
-                        <option value="">Pilih Provinsi</option>
-                    </select>
+
+                <!-- Submit Button -->
+                <div class="mt-6">
+                    <button type="submit" class="w-full py-3 px-4 text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">Buat Akun</button>
                 </div>
-                <div class="relative w-1/3">
-                    <label for="kota" class="absolute -top-3 left-3 bg-white px-1 text-gray-400 font-thin">Kota</label>
-                    <select id="kota" name="kota" class="w-full p-3 border-2 border-gray-300 rounded-lg text-gray-900 focus:outline-none focus:ring-2" required>
-                        <option value="">Pilih Kota</option>
-                    </select>
+                <div class="text-center mt-4">
+                    <p class="text-sm text-gray-600">Sudah Punya akun? <a href="{{ route('login') }}" class="text-blue-500 font-semibold hover:underline">Login Here</a></p>
                 </div>
-                <div class="relative w-1/3">
-                    <label for="kecamatan" class="absolute -top-3 left-3 bg-white px-1 text-gray-400 font-thin">Kecamatan</label>
-                    <select id="kecamatan" name="kecamatan" class="w-full p-3 border-2 border-gray-300 rounded-lg text-gray-900 focus:outline-none focus:ring-2" required>
-                        <option value="">Pilih Kecamatan</option>
-                    </select>
-                </div>
-            </div>
-
-            <!-- Alamat Lengkap -->
-            <div class="relative">
-                <label for="alamat" class="absolute -top-3 left-3 bg-white px-1 text-gray-400 font-thin">Alamat Lengkap</label>
-                <input type="text" id="alamat" name="alamat" class="w-full p-3 border-2 border-gray-300 rounded-lg placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-2 @error('alamat') border-red-500 @enderror" required>
-            </div>
-
-            <!-- Daftar Button -->
-            <button type="submit" class="w-full p-3 bg-teal-400 text-white font-semibold rounded-lg hover:bg-teal-500 transition">Daftar</button>
-        </form>
-
-        <div class="text-center mt-4">
-            <p class="text-sm text-gray-600">Sudah Punya akun? <a href="{{ route('login') }}" class="text-blue-500 font-semibold hover:underline">Login Here</a></p>
         </div>
     </div>
-</div>
 
-<!-- Right Side (Gradient Background with Centered Logo) -->
-<div class="hidden md:flex w-full md:w-1/2 min-h-screen bg-gradient-to-r from-custom-start to-custom-end items-center justify-center">
-    <img src="{{ asset('assets/img/logo.png') }}" alt="Logo" class="w-1/3">
-</div>
-
+    <!-- Right Side (Gradient Background with Centered Logo) -->
+    <div class="hidden md:flex w-full md:w-1/2 min-h-screen bg-gradient-to-r from-custom-start to-custom-end items-center justify-center">
+        <img src="{{ asset('assets/img/logo.png') }}" alt="Logo" class="w-1/3">
+    </div>
+</body>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const provinsiSelect = document.getElementById('provinsi');
@@ -206,5 +244,6 @@
     });
 </script>
 
-</body>
+
+
 </html>
