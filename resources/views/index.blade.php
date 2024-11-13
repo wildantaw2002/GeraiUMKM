@@ -61,15 +61,15 @@
 </div>
 <section>
   <!-- SECTION LOGO UMKM -->
-  <div class="wrapper">
+  <div class="wrapper flex flex-wrap gap-4 justify-center">
     @foreach ($umkm as $umkm)
         <div class="item w-[200px] h-[100px] bg-white rounded-lg shadow-lg flex items-center justify-center transition duration-300 ease-in-out hover:scale-105">
             <img src="{{ asset('storage/' . $umkm->foto_profil) }}" alt="{{ $umkm->nama_umkm }}" class="grayscale hover:grayscale-0 transition duration-300 ease-in-out">
         </div>
     @endforeach
-</div>
-
+  </div>
 </section>
+
 
 <!-- Conditional Menu Section for Mahasiswa -->
 @auth

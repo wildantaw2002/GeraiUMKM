@@ -15,27 +15,63 @@
     </section>
 
     <!-- Main Content Section -->
-    <section class="py-10 px-6">
-      <div class="container mx-auto px-4 py-8">
-        <!-- Featured Article Section -->
-        <h2 class="text-4xl font-bold mb-6">Featured Article</h2>
-        <div class="md:flex">
-          <!-- Main Featured Article -->
-          <div class="md:w-2/3 p-4">
-            @foreach ($artikel->take(1) as $featured)
-              <div class="bg-gray-200 h-96 mb-4" style="background-image: url('{{ Storage::url($featured->foto) }}'); background-size: cover; background-position: center;"></div>
-              <div class="flex items-center space-x-2 text-gray-500 mb-2">
-                <span class="bg-gray-300 rounded-full h-4 w-4"></span>
-                <p>{{ $featured->author }}</p>
-                <span class="text-xs">&bull;</span>
-                <p>{{ $featured->created_at->format('M d, Y') }}</p>
-              </div>
-              <h3 class="text-3xl font-bold mb-2">{{ $featured->judul }}</h3>
-              <p class="text-gray-700 mb-4">{{ Str::limit($featured->isi, 150) }}</p>
-              <a href="{{ route('event.detail', $featured->id) }}" class="text-blue-500">See more</a>
+     
+    <ul class="nav nav-tabs mb-4" id="articleTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="event-tab" data-bs-toggle="tab" data-bs-target="#event" type="button" role="tab" aria-controls="event" aria-selected="true">Events</button>
+            </li>
+            <li class="nav-item" role="presentation" py-10 px-6>
+                <button class="nav-link" id="news-tab" data-bs-toggle="tab" data-bs-target="#news" type="button" role="tab" aria-controls="news" aria-selected="false">News</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="tips-tab" data-bs-toggle="tab" data-bs-target="#tips" type="button" role="tab" aria-controls="tips" aria-selected="false">Tips</button>
+            </li>
+        </ul>
+
+        <div class="tab-content" id="articleTabsContent">
+            @foreach (['event', 'news', 'tips'] as $category)
+                <div class="tab-pane fade {{ $category === 'event' ? 'show active' : '' }}" id="{{ $category }}" role="tabpanel" aria-labelledby="{{ $category }}-tab">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="row">
+                                @foreach ($artikel->where('category', $category)->skip(3) as $item)
+                                    <div class="col-md-6" data-aos="fade-up" data-aos-delay="{{ $loop->index * 100 }}">
+                                        <div class="card">
+                                            <img src="{{ Storage::url($item->foto) }}" class="card-img-top" alt="{{ $item->judul }}">
+                                            <div class="card-body">
+                                                <h5 class="card-title">{{ $item->judul }}</h5>
+                                                <div class="article-meta">
+                                                    <span class="me-3"><i class="far fa-clock"></i> {{ $item->created_at->diffForHumans() }}</span>
+                                                    <span><i class="far fa-comment"></i> {{ rand(5, 50) }} Comments</span>
+                                                </div>
+                                                <p class="card-text">{{ Str::limit($item->isi, 80) }}</p>
+                                                <a href="{{ route('event.detail', $item->id) }}" class="btn btn-read-more">Read More</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                        <div class="col-lg-4" data-aos="fade-left" data-aos-delay="200">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title mb-4">Related {{ ucfirst($category) }}</h5>
+                                    @foreach ($artikel->where('category', $category)->take(5) as $related)
+                                        <div class="d-flex mb-3">
+                                            <img src="{{ Storage::url($related->foto) }}" class="rounded" width="70" height="70" style="object-fit: cover;" alt="{{ $related->judul }}">
+                                            <div class="ms-3">
+                                                <h6 class="mb-1"><a href="{{ route('event.detail', $related->id) }}" class="text-dark">{{ Str::limit($related->judul, 40) }}</a></h6>
+                                                <small class="text-muted">{{ $related->created_at->format('M d, Y') }}</small>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             @endforeach
-          </div>
-          
+        </div>      
           <!-- Related Articles -->
           <div class="md:w-1/3 p-4 space-y-4">
             @foreach ($artikel->skip(1)->take(3) as $related)
@@ -56,47 +92,9 @@
         </div>
         
         <!-- Tabs for Categories -->
-        <div class="flex space-x-4 border-b border-gray-200 pb-2 mb-8">
-          <button class="px-4 py-2 font-medium text-gray-700 border-b-2 border-blue-500 focus:outline-none" data-bs-toggle="tab" data-bs-target="#event">Events</button>
-          <button class="px-4 py-2 font-medium text-gray-500 hover:text-gray-700 focus:outline-none" data-bs-toggle="tab" data-bs-target="#news">News</button>
-          <button class="px-4 py-2 font-medium text-gray-500 hover:text-gray-700 focus:outline-none" data-bs-toggle="tab" data-bs-target="#tips">Tips</button>
-        </div>
         
-        <div class="tab-content">
-          @foreach (['event', 'news', 'tips'] as $category)
-            <div class="tab-pane fade {{ $category === 'event' ? 'show active' : '' }}" id="{{ $category }}" role="tabpanel">
-              <div class="md:flex md:space-x-8">
-                <!-- Main Content Area -->
-                <div class="md:w-2/3">
-                  @foreach ($artikel->where('category', $category)->skip(3) as $item)
-                    <div class="p-4 border rounded-lg mb-4">
-                      <div class="bg-gray-200 h-32 mb-2" style="background-image: url('{{ Storage::url($item->foto) }}'); background-size: cover; background-position: center;"></div>
-                      <h4 class="font-bold mb-2">{{ $item->judul }}</h4>
-                      <p class="text-gray-700 mb-4">{{ Str::limit($item->isi, 100) }}</p>
-                      <a href="{{ route('event.detail', $item->id) }}" class="text-blue-500">Read More</a>
-                    </div>
-                  @endforeach
-                </div>
-                
-                <!-- Sidebar with Related Articles for Each Tab -->
-                <div class="md:w-1/3 mt-8 md:mt-0">
-                  <div class="p-4 border rounded-lg">
-                    <h5 class="font-bold mb-4">Related {{ ucfirst($category) }}</h5>
-                    @foreach ($artikel->where('category', $category)->take(5) as $related)
-                      <div class="d-flex mb-3">
-                        <img src="{{ Storage::url($related->foto) }}" class="rounded" width="70" height="70" style="object-fit: cover;" alt="{{ $related->judul }}">
-                        <div class="ms-3">
-                          <h6 class="mb-1"><a href="{{ route('event.detail', $related->id) }}" class="text-dark">{{ Str::limit($related->judul, 40) }}</a></h6>
-                          <small class="text-muted">{{ $related->created_at->format('M d, Y') }}</small>
-                        </div>
-                      </div>
-                    @endforeach
-                  </div>
-                </div>
-              </div>
-            </div>
-          @endforeach
-        </div>
+        
+        
       </div>
     </section>
 
