@@ -1,5 +1,4 @@
 @include('layouts.header')
-@include('layouts.header')
 
 <!-- Search Section -->
 <section class="bg-secondary text-primary py-9 pt-20 m-11">
@@ -11,7 +10,7 @@
     </div>
 </section>
 
-<!-- Job Categories with Cards (Dynamic Content from Syntax 1) -->
+<!-- Job Categories with Cards -->
 <section id="jobs" class="py-16 px-10">
     <div class="container mx-auto">
         @php
@@ -25,9 +24,8 @@
                 <div class="flex overflow-x-scroll space-x-6">
                     @php
                         $jobs = App\Models\pekerjaan::where('kategori', $category)
-    ->where('status', 'active')
-    ->paginate(3); // Use paginate instead of get
-
+                                    ->where('status', 'active')
+                                    ->paginate(3);
                     @endphp
 
                     @foreach($jobs as $job)
@@ -35,12 +33,16 @@
                             <img src="{{ asset('images/logosme.jpg') }}" class="w-full h-48 object-cover rounded-t-lg mb-4" alt="{{ $job->posisi }}">
                             <h5 class="font-bold">{{ $job->posisi }}</h5>
                             <strong class="text-gray-700">{{ $job->tempat_bekerja }}</strong>
-                            <a href="{{ route('mahasiswa.pekerjaan.show', $job->id) }}" class="btn btn-primary mt-auto bg-teal-500 text-white rounded-lg p-2 mt-4">Lihat Detail</a>
+                            <a href="{{ route('mahasiswa.pekerjaan.show', $job->id) }}" class="mt-auto bg-teal-500 text-white rounded-lg p-2 mt-4 text-center hover:bg-teal-600">Lihat Detail</a>
                         </div>
                     @endforeach
-
                 </div>
-                <p class="mt-4"><a href="{{ route('mahasiswa.pekerjaan.category', $category) }}" class="btn btn-outline-primary">Explore More in {{ $category }}</a></p>
+                <!-- Explore More Button with Background and Hover Effect -->
+                <p class="mt-4 text-center">
+                    <a href="{{ route('mahasiswa.pekerjaan.category', $category) }}" class="bg-teal-500 text-white px-4 py-2 rounded-full font-semibold hover:bg-teal-600 transition duration-200 inline-block">
+                        Explore More in {{ $category }}
+                    </a>
+                </p>
             </div>
         @endforeach
     </div>
@@ -58,5 +60,4 @@
     });
 </script>
 
-    @include('layouts.footer')
-
+@include('layouts.footer')

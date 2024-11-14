@@ -12,10 +12,7 @@
     @vite('resources/css/app.css')
     @vite('resources/css/style.css')
 
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-		<link href="css/tiny-slider.css" rel="stylesheet">
-		<link href="css/style.css" rel="stylesheet">
+ 
 	
 </head>
 
@@ -38,20 +35,20 @@
                 <li class="nav-item {{ request()->routeIs('index') ? 'text-teal-700' : '' }}">
                     <a class="nav-link hover:text-teal-700" href="{{ route('index') }}">Beranda</a>
                 </li>
-                <li class="nav-item {{ request()->routeIs('event') ? 'text-teal-700' : '' }}">
+                <li class="nav-item {{ request()->routeIs('event','event.detail') ? 'text-teal-700' : '' }}">
                     <a class="nav-link hover:text-teal-700" href="{{ route('event') }}">Artikel</a>
                 </li>
-                <li class="nav-item {{ request()->routeIs('umkm.index.beranda') ? 'text-teal-700' : '' }}">
+                <li class="nav-item {{ request()->routeIs('umkm.index.beranda','umkm.show') ? 'text-teal-700' : '' }}">
                     <a class="nav-link hover:text-teal-700" href="{{ route('umkm.index.beranda') }}">UMKM</a>
                 </li>
                 @if (Auth::check() && Auth::user()->role === 'mahasiswa')
-                    <li class="nav-item {{ request()->routeIs('mahasiswa.pekerjaan') ? 'text-teal-700' : '' }}">
-                        <a class="nav-link hover:text-teal-700" href="{{ route('mahasiswa.pekerjaan') }}">Project</a>
-                    </li>
+                <li class="nav-item {{ request()->routeIs('mahasiswa.pekerjaan', 'mahasiswa.pekerjaan.show', 'mahasiswa.pekerjaan.category') ? 'text-teal-700' : '' }}">
+                    <a class="nav-link hover:text-teal-700" href="{{ route('mahasiswa.pekerjaan') }}">Project</a>
+                </li>
                     <li class="nav-item {{ request()->routeIs('mahasiswa.chat') ? 'text-teal-700' : '' }}">
                         <a class="nav-link hover:text-teal-700" href="{{ route('mahasiswa.chat') }}">Chat</a>
                     </li>
-                    <li class="nav-item {{ request()->routeIs('mahasiswa.profile') ? 'text-teal-700' : '' }}">
+                    <li class="nav-item {{ request()->routeIs('mahasiswa.profile','mahasiswa.profile.edit') ? 'text-teal-700' : '' }}">
                         <a class="nav-link hover:text-teal-700" href="{{ route('mahasiswa.profile') }}">Profile</a>
                     </li>
                 @endif

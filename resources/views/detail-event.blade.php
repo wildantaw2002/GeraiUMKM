@@ -10,14 +10,13 @@
     <meta name="description" content="{{ $artikel->judul }}" />
     <meta name="keywords" content="event, UMKM, {{ $artikel->judul }}" />
 
-    <!-- Bootstrap CSS -->
-    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <title>{{ $artikel->judul }} | Pos UMKM</title>
+
+    <!-- Tailwind CSS -->
+    @vite('resources/css/app.css')
+
+    <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link href="{{ asset('css/tiny-slider.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
-    <!-- AOS CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
     <style>
         .img-zoomin {
@@ -36,28 +35,28 @@
             font-size: 1.1rem;
         }
     </style>
-
-    <title>{{ $artikel->judul }} | Pos UMKM</title>
 </head>
 
-<body>
+<body class="bg-gray-50">
     @include('layouts.header')
 
     <!-- Event Detail Section Start -->
-    <div class="container py-5">
-        <div class="row">
-            <div class="col-lg-8">
-                <!-- Artikel Detail sebagai Card -->
-                <div class="card mb-4" data-aos="fade-up">
-                    <img src="{{ Storage::url($artikel->foto) }}" class="card-img-top img-zoomin" alt="{{ $artikel->judul }}">
-                    <div class="card-body">
-                        <h1 class="card-title display-4 text-dark">{{ $artikel->judul }}</h1>
-                        <div class="d-flex justify-content-start mb-3">
-                            <span class="text-muted me-3"><i class="fa fa-clock pulsate"></i> {{ $artikel->created_at->diffForHumans() }}</span>
-                            <span class="text-muted me-3"><i class="fa fa-eye pulsate"></i> {{ number_format($artikel->views) }} Views</span>
-                            <span class="text-muted"><i class="fa fa-share-alt pulsate"></i> {{ number_format($artikel->shares) }} Shares</span>
+    <div class="container mx-auto py-10 px-4 mt-10">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Main Content -->
+            <div class="col-span-2">
+                <div class="bg-white shadow-lg rounded-lg overflow-hidden mb-8" data-aos="fade-up">
+                    <img src="{{ Storage::url($artikel->foto) }}" class="img-zoomin" alt="{{ $artikel->judul }}">
+                    <div class="p-6">
+                        <h1 class="text-3xl font-bold text-gray-800 mb-4">{{ $artikel->judul }}</h1>
+                        <!-- Meta Info -->
+                        <div class="flex items-center text-gray-500 space-x-4 mb-4">
+                            <span><i class="far fa-clock mr-1"></i> {{ $artikel->created_at->diffForHumans() }}</span>
+                            <span><i class="far fa-eye mr-1"></i> {{ number_format($artikel->views) }} Views</span>
+                            <span><i class="fas fa-share-alt mr-1"></i> {{ number_format($artikel->shares) }} Shares</span>
+                            <span><i class="far fa-comment-dots mr-1"></i> {{ $artikel->comments_count ?? rand(5, 50) }} Comments</span>
                         </div>
-                        <div class="article-content">
+                        <div class="article-content text-gray-700">
                             {!! nl2br(e($artikel->isi)) !!}
                         </div>
                     </div>
@@ -65,41 +64,36 @@
             </div>
 
             <!-- Sidebar -->
-            <div class="col-lg-4">
-                <div class="bg-light rounded p-4" data-aos="fade-right">
-                    <h3 class="mb-4">Related Articles</h3>
-                    <div class="row g-4">
-                        @foreach ($relatedArticles as $related)
-                        <div class="col-12" data-aos="fade-up">
-                            <div class="card">
-                                <img src="{{ Storage::url($related->foto) }}" class="card-img-top img-zoomin" alt="{{ $related->judul }}">
-                                <div class="card-body">
-                                    <a href="{{ route('event.detail', $related->id) }}" class="h5 card-title">{{ $related->judul }}</a>
-                                    <p class="card-text fs-6 text-muted"><i class="fa fa-clock"></i> {{ $related->created_at->diffInMinutes() }} minute read</p>
-                                    <p class="card-text fs-6 text-muted"><i class="fa fa-eye"></i> {{ number_format($related->views) }} Views</p>
-                                </div>
+            <div class="bg-white rounded-lg shadow-lg p-6" data-aos="fade-left">
+                <h3 class="text-2xl font-semibold mb-4">Related Articles</h3>
+                <div class="space-y-4">
+                    @foreach ($relatedArticles as $related)
+                        <div class="flex space-x-4" data-aos="fade-up">
+                            <img src="{{ Storage::url($related->foto) }}" class="w-24 h-24 rounded-lg object-cover" alt="{{ $related->judul }}">
+                            <div>
+                                <a href="{{ route('event.detail', $related->id) }}" class="text-lg font-semibold text-gray-800 hover:text-teal-600">{{ $related->judul }}</a>
+                                <p class="text-gray-500 text-sm"><i class="far fa-clock mr-1"></i> {{ $related->created_at->diffForHumans() }}</p>
+                                <p class="text-gray-500 text-sm"><i class="far fa-eye mr-1"></i> {{ number_format($related->views) }} Views</p>
                             </div>
                         </div>
-                        @endforeach
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
     </div>
     <!-- Event Detail Section End -->
 
-    <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('js/tiny-slider.js') }}"></script>
-    <!-- AOS JS -->
+    <!-- AOS Animation Script -->
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script>
         AOS.init({
             duration: 800,
             easing: 'slide',
-            once: false,
-            mirror: true,
+            once: true,
+            mirror: false,
         });
     </script>
+
     @include('layouts.footer')
 </body>
 

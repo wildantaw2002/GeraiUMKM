@@ -23,6 +23,8 @@ use App\Http\Controllers\KonsultasiController;
 use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\CertificateController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\ChatBotController;
+
 
 Route::get('/send-email', function () {
     Mail::to('ridho.aulia7324@gmail.com')->send(new TestEmail());
@@ -53,6 +55,9 @@ Route::middleware(['auth', RoleMiddleware::class . ':mahasiswa'])->group(functio
     })->name('mahasiswa.chat');
 
     Route::post('/apply/store', [ApplyController::class, 'store'])->name('apply.store');
+
+    Route::get('/mahasiswa/chatbot', [ChatBotController::class, 'index'])->name('mahasiswa.chatbot');
+    Route::post('/mahasiswa/chatbot/send', [ChatBotController::class, 'processChat'])->name('mahasiswa.chatbot.send');
 });
 
 // Middleware untuk umkm
@@ -202,4 +207,3 @@ Route::post('/registerumkm', [AuthController::class, 'registerumkm'])->name('umk
 // // Route untuk chat
 // Route::post('/send-message', [ChatController::class, 'sendMessage']);
 // Route::get('/fetch-messages/{id_receiver}', [ChatController::class, 'fetchMessages']);
-

@@ -34,6 +34,7 @@
     <div class="d-flex justify-content-center mt-4 mb-5">
         {{ $umkms->links() }}
     </div>
+    @include('layouts.footer')
 
     <!-- JavaScript for Hamburger Menu -->
     <script>
