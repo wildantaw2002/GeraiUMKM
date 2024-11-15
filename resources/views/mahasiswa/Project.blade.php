@@ -13,10 +13,6 @@
 <!-- Job Categories with Cards -->
 <section id="jobs" class="py-16 px-10">
     <div class="container mx-auto">
-        @php
-            $categories = ['Agrikultur', 'Akuntansi', 'Edukasi', 'Finance', 'Teknologi', 'Kesehatan', 'Kreatif', 'Lingkungan', 'Sosial','Marketing','Lainnya'];
-        @endphp
-
         @foreach($categories as $category)
             <div class="category-section mb-10">
                 <h3 class="text-xl font-bold mb-4">{{ $category }}</h3>
@@ -25,7 +21,7 @@
                     @php
                         $jobs = App\Models\pekerjaan::where('kategori', $category)
                                     ->where('status', 'active')
-                                    ->paginate(3);
+                                    ->paginate(100);
                     @endphp
 
                     @foreach($jobs as $job)

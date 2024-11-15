@@ -14,13 +14,21 @@ use Illuminate\Support\Facades\Auth;
 
 class IndexController extends Controller
 {
+
+    private $projectController;
+
+    public function __construct()
+    {
+        $this->projectController = new ProjectController();
+    }
+
     public function getDataUmkm()
     {
         $pekerjaan = pekerjaan::inRandomOrder()->take(3)->get(); // Get 3 random pekerjaan entries
         $umkm = umkm::inRandomOrder()->take(3)->get(); // Get 3 random UMKM entries
         $artikel = artikel::all(); // Get 3 random artikel entries
 
-        return view('index', compact('umkm', 'artikel','pekerjaan'));
+        return view('index', compact('umkm', 'artikel', 'pekerjaan'));
     }
 
 
@@ -53,10 +61,34 @@ class IndexController extends Controller
     {
         // Get the authenticated user's related mahasiswa data
         $mahasiswa = mahasiswa::where('id_user', Auth::id())->first();
-        // dd($mahasiswa);
+
+        // Mulai query builder
+        $projects = apply::query();
+
+        // Tambahkan eager loading untuk relasi (misal, `projectDetails`)
+        $projects->with('project'); // Ganti 'projectDetails' dengan nama relasi yang sesuai
+
+        // Tambahkan kondisi user yang sedang login
+        $projects->where('id_user', Auth::id());
+
+        // Ambil data dan kelompokkan berdasarkan status
+        $groupedProjects = $projects->get()->groupBy('status');
+
+        // Pisahkan proyek berdasarkan status
+        $historyProject = $groupedProjects->get('completed', collect());
+        $activeProject = $groupedProjects->get('active', collect());
+        $rejectProject = $groupedProjects->get('rejected', collect());
+        $pendingProject = $groupedProjects->get('pending', collect());
+
+        $projectsData = [
+            'history' => $historyProject ?? [],
+            'active' => $activeProject ?? [],
+            'reject' => $rejectProject ?? [],
+            'pending' => $pendingProject ?? [],
+        ];
 
         // Pass the data to the view
-        return view('mahasiswa.profile-mahasiswa', compact('mahasiswa'));
+        return view('mahasiswa.profile-mahasiswa', compact('mahasiswa', 'projectsData'));
     }
 
     public function updateBio(Request $request)
@@ -132,19 +164,17 @@ class IndexController extends Controller
         }
     }
 
-
-
-
     public function getDataProject()
     {
         $pekerjaan = pekerjaan::all();
-        return view('mahasiswa.Project', compact('pekerjaan'));
+        $categories = ['Agrikultur', 'Akuntansi', 'Edukasi', 'Finance', 'Teknologi', 'Kesehatan', 'Kreatif', 'Lingkungan', 'Sosial', 'Marketing', 'Lainnya'];
+        return view('mahasiswa.Project', compact('pekerjaan', 'categories'));
     }
 
     public function getDataProjectByCategory($category)
     {
         // Definisikan kategori yang valid
-        $categories = ['Agrikultur', 'Akuntansi', 'Edukasi', 'Finance', 'Teknologi', 'Kesehatan', 'Kreatif', 'Lingkungan', 'Sosial','Marketing','Lainnya'];
+        $categories = ['Agrikultur', 'Akuntansi', 'Edukasi', 'Finance', 'Teknologi', 'Kesehatan', 'Kreatif', 'Lingkungan', 'Sosial', 'Marketing', 'Lainnya'];
 
         // Cek apakah kategori yang dipilih valid
         if (!in_array($category, $categories)) {
@@ -156,6 +186,7 @@ class IndexController extends Controller
 
         return view('mahasiswa.list_project', compact('category', 'projects'));
     }
+
     // Fetch specific project details
     public function showProject($id)
     {
@@ -173,7 +204,6 @@ class IndexController extends Controller
         }
 
         $umkms = $query->paginate(10);  // 10 items per page
-
         return view('umkm', compact('umkms', 'search'));
     }
 
@@ -231,5 +261,4 @@ class IndexController extends Controller
 
         return view('mahasiswa.edit-profile', compact('mahasiswa'));
     }
-
 }

@@ -19,7 +19,7 @@
     <!-- Profile Header -->
     <div class="flex items-center space-x-6 bg-white p-8 rounded-lg shadow-md">
         <img src="{{ asset($mahasiswa && $mahasiswa->foto_profil ? 'uploads/mahasiswa/' . $mahasiswa->foto_profil : 'images/default.png') }}"
-        alt="Profile Image" class="w-24 h-24 rounded-full border-4 border-teal-300 object-cover">   
+            alt="Profile Image" class="w-24 h-24 rounded-full border-4 border-teal-300 object-cover">
         <div class="flex-1">
             <h1 class="text-2xl font-semibold text-yellow">{{ $mahasiswa->nama_mahasiswa ?? 'N/A' }}</h1>
             <p class="text-gray-600">{{ $mahasiswa->universitas ?? 'N/A' }}</p>
@@ -59,7 +59,7 @@
                 </div>
                 <div>
                     <gh class="text-sm text-gray-500">Pekerjaan</p>
-                    <p class="text-base text-gray-800">{{ $mahasiswa->pekerjaan ?? 'N/A' }}</p>
+                        <p class="text-base text-gray-800">{{ $mahasiswa->pekerjaan ?? 'N/A' }}</p>
                 </div>
                 <div>
                     <p class="text-sm text-gray-500">Nomor Telepon</p>
@@ -103,11 +103,20 @@
             </div>
         </div>
     </div>
-    
+
     <!-- Card Active Project -->
     <div class="flex items-center space-x-6 bg-white p-8 rounded-lg shadow-md mt-8">
         <div class="w-full">
             <h3 class="text-lg font-bold border-b pb-2 mb-4">Active Project</h3>
+            <ul class="list-disc list-inside text-gray-800">
+                @if (count($projectsData['active']) == 0)
+                    <p>Data tidak ditemukan</p>
+                @else
+                    @foreach ($projectsData['active'] as $item)
+                        <li>{{ $item->project->posisi }}</li>
+                    @endforeach
+                @endif
+            </ul>
         </div>
     </div>
 
@@ -116,9 +125,13 @@
         <div class="w-full">
             <h3 class="text-lg font-bold border-b pb-2 mb-4">Project History</h3>
             <ul class="list-disc list-inside text-gray-800">
-                <li>Project 1: Completed</li>
-                <li>Project 2: In Progress</li>
-                <li>Project 3: Pending Approval</li>
+                @if (count($projectsData['history']) == 0)
+                    <p>Data tidak ditemukan</p>
+                @else
+                    @foreach ($projectsData['history'] as $item)
+                        <li>{{ $item->project->posisi }}</li>
+                    @endforeach
+                @endif
             </ul>
         </div>
     </div>
@@ -128,7 +141,8 @@
     class="fixed bottom-8 right-8 bg-teal-600 text-white p-3 rounded-full shadow-lg hover:bg-teal-700 transition duration-300"
     style="display: none;" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">
     <!-- Inline SVG for Arrow Up -->
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+        class="w-6 h-6">
         <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
     </svg>
 </button>
