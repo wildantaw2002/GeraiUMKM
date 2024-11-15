@@ -87,19 +87,19 @@ Explore More
       <img src="{{ asset ('assets/img/LogoUMKM3.png')}}" alt="Logo UMKM" class="h-full max-w-full object-contain grayscale hover:grayscale-0 transition duration-300 ease-in-out">
     </div>
     <div class="item item4 w-[200px] h-[100px] flex items-center justify-center transition duration-300 ease-in-out hover:scale-105">
-      <img src="{{ asset ('assets/img/LogoUMKM1.png')}}" alt="Logo UMKM" class="h-full max-w-full object-contain grayscale hover:grayscale-0 transition duration-300 ease-in-out">
+      <img src="{{ asset ('assets/img/LogoUMKM4.png')}}" alt="Logo UMKM" class="h-full max-w-full object-contain grayscale hover:grayscale-0 transition duration-300 ease-in-out">
     </div>
     <div class="item item5 w-[200px] h-[100px] flex items-center justify-center transition duration-300 ease-in-out hover:scale-105">
-      <img src="{{ asset ('assets/img/LogoUMKM1.png')}}" alt="Logo UMKM" class="h-full max-w-full object-contain grayscale hover:grayscale-0 transition duration-300 ease-in-out">
+      <img src="{{ asset ('assets/img/LogoUMKM5.png')}}" alt="Logo UMKM" class="h-full max-w-full object-contain grayscale hover:grayscale-0 transition duration-300 ease-in-out">
     </div>
     <div class="item item6 w-[200px] h-[100px] flex items-center justify-center transition duration-300 ease-in-out hover:scale-105">
-      <img src="{{ asset ('assets/img/LogoUMKM1.png')}}" alt="Logo UMKM" class="h-full max-w-full object-contain grayscale hover:grayscale-0 transition duration-300 ease-in-out">
+      <img src="{{ asset ('assets/img/LogoUMKM6.png')}}" alt="Logo UMKM" class="h-full max-w-full object-contain grayscale hover:grayscale-0 transition duration-300 ease-in-out">
     </div>
     <div class="item item7 w-[200px] h-[100px] flex items-center justify-center transition duration-300 ease-in-out hover:scale-105">
-      <img src="{{ asset ('assets/img/LogoUMKM1.png')}}" alt="Logo UMKM" class="h-full max-w-full object-contain grayscale hover:grayscale-0 transition duration-300 ease-in-out">
+      <img src="{{ asset ('assets/img/LogoUMKM7.png')}}" alt="Logo UMKM" class="h-full max-w-full object-contain grayscale hover:grayscale-0 transition duration-300 ease-in-out">
     </div>
     <div class="item item8 w-[200px] h-[100px] flex items-center justify-center transition duration-300 ease-in-out hover:scale-105">
-      <img src="{{ asset ('assets/img/LogoUMKM1.png')}}" alt="Logo UMKM" class="h-full max-w-full object-contain grayscale hover:grayscale-0 transition duration-300 ease-in-out">
+      <img src="{{ asset ('assets/img/LogoUMKM8.png')}}" alt="Logo UMKM" class="h-full max-w-full object-contain grayscale hover:grayscale-0 transition duration-300 ease-in-out">
     </div>
   </div>
 </section>
@@ -243,18 +243,7 @@ Explore More
         </div>
       </div>
 
-      <!-- Benefit 3 -->
-      <div class="flex items-start space-x-4">
-        <div class="p-3">
-          <img src="{{ asset('assets/img/Dosen.png') }}" alt="">
-        </div>
-        <div>
-          <h3 class="text-xl font-semibold text-gray-900">Dosen</h3>
-          <p class="text-gray-600">✔️ <span class="font-bold ">Platform Pengajaran Praktis: </span>Gerai UMKM menyediakan platform yang memungkinkan dosen melibatkan mahasiswa dalam proyek nyata, sehingga pembelajaran lebih mendalam.</p>
-          <p class="text-gray-600">✔️ <span class="font-bold ">Kolaborasi dengan UMKM: </span>Pendidik dapat bekerja sama dengan UMKM untuk memberikan pengalaman belajar berbasis proyek dan memberikan dampak nyata bagi masyarakat.</p>
-          <p class="text-gray-600">✔️ <span class="font-bold ">Riset dan Pengembangan:</span>Melalui proyek riset bersama mahasiswa dan UMKM, dosen dapat mendukung pengembangan UMKM dan berkontribusi pada ilmu kewirausahaan dan teknologi.</p>
-        </div>
-      </div>
+      
     </div>
   </div>
 </section>
@@ -364,7 +353,7 @@ Explore More
 
   <!-- View All Button -->
   <div class="text-center mt-8">
-    <a href="#" class="text-teal-600 border border-teal-600 px-4 py-2 rounded-full font-semibold hover:bg-teal-600 hover:text-white transition duration-200">
+    <a href="{{ route('event') }}" class="text-teal-600 border border-teal-600 px-4 py-2 rounded-full font-semibold hover:bg-teal-600 hover:text-white transition duration-200">
       Lihat Semua
     </a>
   </div>
