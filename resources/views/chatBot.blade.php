@@ -76,4 +76,3 @@
     });
 </script>
 
-@include('layouts.footer')

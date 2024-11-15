@@ -231,4 +231,5 @@ class IndexController extends Controller
 
         return view('mahasiswa.edit-profile', compact('mahasiswa'));
     }
+
 }

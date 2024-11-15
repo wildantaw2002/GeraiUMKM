@@ -11,7 +11,12 @@
     <p class="text-gray-600 text-lg">
       Gerai UMKM adalah sebuah bisnis sociopreneurship yang berfokus pada pemberdayaan pendidikan dan pertumbuhan UMKM. Kami menghubungkan mahasiswa, dosen, masyarakat, dan pelaku usaha menengah ke bawah untuk menciptakan solusi inovatif.
     </p>
-    <button class="bg-teal-700 text-white px-8 py-3 rounded-full font-semibold text-lg">Explore More</button>
+    <button onclick="document.getElementById('trust-section').scrollIntoView({ behavior: 'smooth' });" 
+    class="bg-teal-700 text-white px-8 py-3 rounded-full font-semibold text-lg">
+Explore More
+</button>
+
+  
   </div>
 
   <div class="relative flex justify-center md:justify-end mb-8 md:mb-0">
@@ -39,7 +44,7 @@
     <a href="https://wa.me/088290954001">
     <div class="w-full h-48 bg-blue-50 rounded-lg shadow-md flex flex-col items-center justify-center transform transition duration-200 hover:scale-105">
       <img src="{{ asset('assets/img/ContactUs.png') }}" alt="Kategori" class="mb-4 h-16">
-      <p class="text-teal-600 font-semibold">Contact Us</p>
+      <p class="text-teal-600 font-semibold">Kontak Kami</p>
     </div>
   </a>
     <a href="{{ route('mahasiswa.chat') }}">
@@ -60,11 +65,11 @@
 @endauth
 
 <!-- Trust Section -->
-<section class="">
+<section id="trust-section">
   <div class="container mx-auto text-center px-6 md:px-0">
     <div class="bg-teal-500 text-white py-8 px-10 rounded-lg shadow-lg max-w-5xl mx-auto">
-      <h2 class="text-2xl md:text-3xl font-bold">Lebih Dari 100 UMKM Percaya Kepada Kami</h2>
-      <p class="text-lg md:text-xl mt-4 text-white">Kami telah membantu lebih dari 100 UMKM untuk berkembang dan mencapai potensi maksimal mereka.</p>
+      <h2 class="text-2xl md:text-3xl font-bold">Lebih Dari 100 UMKM dan Mahasiswa Percaya Kepada Kami</h2>
+      <p class="text-lg md:text-xl mt-4 text-white">Kami telah membantu UMKM dan Mahasiswa untuk berkembang dan mencapai potensi maksimal mereka.</p>
     </div>
   </div>
 </section>
@@ -72,29 +77,29 @@
 <section>
   <!-- SECTION LOGO UMKM -->
 <div class="wrapper">
-    <div class="item item1 w-[200px] h-[100px] bg-white rounded-lg shadow-lg flex items-center justify-center transition duration-300 ease-in-out hover:scale-105">
-      <img src="./asset/img/logo1.png" alt="Logo UMKM" class="grayscale hover:grayscale-0 transition duration-300 ease-in-out">
+    <div class="item item1 w-[200px] h-[100px] flex items-center justify-center transition duration-300 ease-in-out hover:scale-105">
+      <img src="{{ asset ('assets/img/LogoUMKM1.png')}}" alt="Logo UMKM" class="h-full max-w-full object-contain grayscale hover:grayscale-0 transition duration-300 ease-in-out">
     </div>
-    <div class="item item2 w-[200px] h-[100px] bg-white rounded-lg shadow-lg flex items-center justify-center transition duration-300 ease-in-out hover:scale-105">
-      <img src="./asset/img/logo1.png" alt="Logo UMKM" class="grayscale hover:grayscale-0 transition duration-300 ease-in-out">
+    <div class="item item2 w-[200px] h-[100px] flex items-center justify-center transition duration-300 ease-in-out hover:scale-105">
+      <img src="{{ asset ('assets/img/LogoUMKM2.png')}}" alt="Logo UMKM" class="h-full max-w-full object-contain grayscale hover:grayscale-0 transition duration-300 ease-in-out">
     </div>
-    <div class="item item3 w-[200px] h-[100px] bg-white rounded-lg shadow-lg flex items-center justify-center transition duration-300 ease-in-out hover:scale-105">
-      <img src="./asset/img/logo1.png" alt="Logo UMKM" class="grayscale hover:grayscale-0 transition duration-300 ease-in-out">
+    <div class="item item3 w-[200px] h-[100px] flex items-center justify-center transition duration-300 ease-in-out hover:scale-105">
+      <img src="{{ asset ('assets/img/LogoUMKM3.png')}}" alt="Logo UMKM" class="h-full max-w-full object-contain grayscale hover:grayscale-0 transition duration-300 ease-in-out">
     </div>
-    <div class="item item4 w-[200px] h-[100px] bg-white rounded-lg shadow-lg flex items-center justify-center transition duration-300 ease-in-out hover:scale-105">
-      <img src="./asset/img/logo1.png" alt="Logo UMKM" class="grayscale hover:grayscale-0 transition duration-300 ease-in-out">
+    <div class="item item4 w-[200px] h-[100px] flex items-center justify-center transition duration-300 ease-in-out hover:scale-105">
+      <img src="{{ asset ('assets/img/LogoUMKM1.png')}}" alt="Logo UMKM" class="h-full max-w-full object-contain grayscale hover:grayscale-0 transition duration-300 ease-in-out">
     </div>
-    <div class="item item5 w-[200px] h-[100px] bg-white rounded-lg shadow-lg flex items-center justify-center transition duration-300 ease-in-out hover:scale-105">
-      <img src="./asset/img/logo1.png" alt="Logo UMKM" class="grayscale hover:grayscale-0 transition duration-300 ease-in-out">
+    <div class="item item5 w-[200px] h-[100px] flex items-center justify-center transition duration-300 ease-in-out hover:scale-105">
+      <img src="{{ asset ('assets/img/LogoUMKM1.png')}}" alt="Logo UMKM" class="h-full max-w-full object-contain grayscale hover:grayscale-0 transition duration-300 ease-in-out">
     </div>
-    <div class="item item6 w-[200px] h-[100px] bg-white rounded-lg shadow-lg flex items-center justify-center transition duration-300 ease-in-out hover:scale-105">
-      <img src="./asset/img/logo1.png" alt="Logo UMKM" class="grayscale hover:grayscale-0 transition duration-300 ease-in-out">
+    <div class="item item6 w-[200px] h-[100px] flex items-center justify-center transition duration-300 ease-in-out hover:scale-105">
+      <img src="{{ asset ('assets/img/LogoUMKM1.png')}}" alt="Logo UMKM" class="h-full max-w-full object-contain grayscale hover:grayscale-0 transition duration-300 ease-in-out">
     </div>
-    <div class="item item7 w-[200px] h-[100px] bg-white rounded-lg shadow-lg flex items-center justify-center transition duration-300 ease-in-out hover:scale-105">
-      <img src="./asset/img/logo1.png" alt="Logo UMKM" class="grayscale hover:grayscale-0 transition duration-300 ease-in-out">
+    <div class="item item7 w-[200px] h-[100px] flex items-center justify-center transition duration-300 ease-in-out hover:scale-105">
+      <img src="{{ asset ('assets/img/LogoUMKM1.png')}}" alt="Logo UMKM" class="h-full max-w-full object-contain grayscale hover:grayscale-0 transition duration-300 ease-in-out">
     </div>
-    <div class="item item8 w-[200px] h-[100px] bg-white rounded-lg shadow-lg flex items-center justify-center transition duration-300 ease-in-out hover:scale-105">
-      <img src="./asset/img/logo1.png" alt="Logo UMKM" class="grayscale hover:grayscale-0 transition duration-300 ease-in-out">
+    <div class="item item8 w-[200px] h-[100px] flex items-center justify-center transition duration-300 ease-in-out hover:scale-105">
+      <img src="{{ asset ('assets/img/LogoUMKM1.png')}}" alt="Logo UMKM" class="h-full max-w-full object-contain grayscale hover:grayscale-0 transition duration-300 ease-in-out">
     </div>
   </div>
 </section>
@@ -110,9 +115,21 @@
               Temukan berbagai proyek yang sesuai dengan minat dan keahlian Anda dengan mudah. Kami menyediakan platform yang memudahkan kolaborasi dan memberikan akses ke peluang terbaik.
           </p>
           <p>
-              <a href="{{ route('mahasiswa.pekerjaan') }}" class="bg-teal-500 text-white py-2 px-4 rounded-lg hover:bg-teal-600">
-                  Explore
-              </a>
+              @auth
+                  @if(auth()->user()->role == 'mahasiswa')
+                      <a href="{{ route('mahasiswa.pekerjaan') }}" class="bg-teal-500 text-white py-2 px-4 rounded-lg hover:bg-teal-600">
+                          Explore
+                      </a>
+                  @else
+                      <button onclick="showLoginModal()" class="bg-teal-500 text-white py-2 px-4 rounded-lg hover:bg-teal-600">
+                          Explore
+                      </button>
+                  @endif
+              @else
+                  <button onclick="showLoginModal()" class="bg-teal-500 text-white py-2 px-4 rounded-lg hover:bg-teal-600">
+                      Explore
+                  </button>
+              @endauth
           </p>
       </div>
 
@@ -126,9 +143,21 @@
                       <h3 class="text-teal-600 font-semibold text-lg mb-1">{{ $item->posisi }}</h3>
                       <p class="text-gray-600 mb-1">{{ Str::limit($item->deskripsi, 100) }}</p>
                       <span class="text-gray-500 text-sm">{{ $item->tempat_bekerja }}</span>
-                      <a href="{{ route('mahasiswa.pekerjaan.show', $item->id) }}" class="bg-teal-500 text-white mt-4 py-2 px-4 rounded-lg hover:bg-teal-600">
-                          Lihat Detail
-                      </a>
+                      @auth
+                          @if(auth()->user()->role == 'mahasiswa')
+                              <a href="{{ route('mahasiswa.pekerjaan.show', $item->id) }}" class="bg-teal-500 text-white mt-4 py-2 px-4 rounded-lg hover:bg-teal-600">
+                                  Lihat Detail
+                              </a>
+                          @else
+                              <button onclick="showLoginModal()" class="bg-teal-500 text-white mt-4 py-2 px-4 rounded-lg hover:bg-teal-600">
+                                  Lihat Detail
+                              </button>
+                          @endif
+                      @else
+                          <button onclick="showLoginModal()" class="bg-teal-500 text-white mt-4 py-2 px-4 rounded-lg hover:bg-teal-600">
+                              Lihat Detail
+                          </button>
+                      @endauth
                   </div>
               @endforeach
           </div>
@@ -136,8 +165,19 @@
   </div>
 </section>
 
+<!-- Login Modal -->
+<div id="loginModal" class="fixed inset-0 flex items-center justify-center hidden z-50" style="background-color: rgba(0, 0, 0, 0.3);">
+  <div class="bg-white rounded-lg shadow-lg max-w-md mx-auto p-6" onclick="event.stopPropagation();">
+      <h2 class="text-2xl font-bold mb-6 text-teal-600 text-center">Silakan Login untuk Mengakses Konten Ini</h2>
+      <p class="mb-4 text-gray-600 text-center">Anda harus login untuk melihat proyek dan peluang terbaik kami.</p>
+      <div class="text-center">
+          <a href="{{ route('login') }}" class="bg-teal-500 text-white py-2 px-4 rounded-lg hover:bg-teal-600">Login</a>
+      </div>
+  </div>
+</div>
+
 <!-- About Section -->
-<section class="max-w-7xl mx-auto px-6 py-16 flex flex-col md:flex-row items-center space-y-8 md:space-y-0 md:space-x-8">
+<section id ="about"  class="max-w-7xl mx-auto px-6 py-16 flex flex-col md:flex-row items-center space-y-8 md:space-y-0 md:space-x-8">
   <div class="md:w-1/2 space-y-6">
     <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Tentang Kami</h2>
     <h3 class="text-2xl font-semibold text-green-600">Visi</h3>
@@ -219,46 +259,63 @@
   </div>
 </section>
 
-<!-- Section Kategori UMKM -->
 <section class="py-10 px-6 md:px-16">
   <div class="flex justify-between items-center mb-8">
     <h2 class="text-xl font-semibold">Kategori UMKM</h2>
-    <a href="#" class="text-teal-600 font-semibold hover:underline">Lihat Semua</a>
+    <a href="{{ route('umkm.index.beranda') }}" class="text-teal-600 font-semibold hover:underline">Lihat Semua</a>
   </div>
 
   <div class="grid grid-cols-1 md:grid-cols-6 gap-10 justify-items-center">
-    <!-- Card Kategori -->
-    <div class="flex flex-col items-center">
-      <img src="{{ asset ('assets/img/logoFnB.png')}}" alt="F&B" class="w-20 h-20">
-      <p class="mt-2 text-sm font-semibold">F&B</p>
-    </div>
+    <!-- F&B -->
+    <a href="{{ route('umkm.index.beranda') }}#f-b">
+      <div class="flex flex-col items-center">
+          <img src="{{ asset('assets/img/logoFnB.png') }}" alt="F&B" class="w-20 h-20">
+          <p class="mt-2 text-sm font-semibold">F&B</p>
+      </div>
+    </a>
 
-    <div class="flex flex-col items-center">
-      <img src="{{ asset ('assets/img/logoRetail.png')}}" alt="Retail" class="w-20 h-20">
-      <p class="mt-2 text-sm font-semibold">Retail</p>
-    </div>
+    <!-- Retail -->
+    <a href="{{ route('umkm.index.beranda') }}#retail">
+      <div class="flex flex-col items-center">
+          <img src="{{ asset('assets/img/logoRetail.png') }}" alt="Retail" class="w-20 h-20">
+          <p class="mt-2 text-sm font-semibold">Retail</p>
+      </div>
+    </a>
 
-    <div class="flex flex-col items-center">
-      <img src="{{ asset ('assets/img/logoJasa.png')}}" alt="Jasa" class="w-20 h-20">
-      <p class="mt-2 text-sm font-semibold">Jasa</p>
-    </div>
+    <!-- Jasa -->
+    <a href="{{ route('umkm.index.beranda') }}#jasa">
+      <div class="flex flex-col items-center">
+          <img src="{{ asset('assets/img/logoJasa.png') }}" alt="Jasa" class="w-20 h-20">
+          <p class="mt-2 text-sm font-semibold">Jasa</p>
+      </div>
+    </a>
 
-    <div class="flex flex-col items-center">
-      <img src="{{ asset ('assets/img/logoProduksi.png')}}" alt="Produksi" class="w-20 h-20">
-      <p class="mt-2 text-sm font-semibold">Produksi</p>
-    </div>
+    <!-- Produksi -->
+    <a href="{{ route('umkm.index.beranda') }}#produksi">
+      <div class="flex flex-col items-center">
+          <img src="{{ asset('assets/img/logoProduksi.png') }}" alt="Produksi" class="w-20 h-20">
+          <p class="mt-2 text-sm font-semibold">Produksi</p>
+      </div>
+    </a>
 
-    <div class="flex flex-col items-center">
-      <img src="{{ asset ('assets/img/logoEdu.png')}}" alt="Pendidikan" class="w-20 h-20">
-      <p class="mt-2 text-sm font-semibold">Pendidikan</p>
-    </div>
+    <!-- Pendidikan -->
+    <a href="{{ route('umkm.index.beranda') }}#pendidikan">
+      <div class="flex flex-col items-center">
+          <img src="{{ asset('assets/img/logoEdu.png') }}" alt="Pendidikan" class="w-20 h-20">
+          <p class="mt-2 text-sm font-semibold">Pendidikan</p>
+      </div>
+    </a>
 
-    <div class="flex flex-col items-center">
-      <img src="{{ asset ('assets/img/logoHealth.png')}}" alt="Kesehatan & Kecantikan" class="w-20 h-20">
-      <p class="mt-2 text-sm font-semibold text-center">Kesehatan &<br>Kecantikan</p>
-    </div>
+    <!-- Kesehatan dan Kecantikan -->
+    <a href="{{ route('umkm.index.beranda') }}#kesehatan-dan-kecantikan">
+      <div class="flex flex-col items-center">
+          <img src="{{ asset('assets/img/logoHealth.png') }}" alt="Kesehatan dan Kecantikan" class="w-20 h-20">
+          <p class="mt-2 text-sm font-semibold text-center">Kesehatan &<br>Kecantikan</p>
+      </div>
+    </a>
   </div>
 </section>
+
 
 
 
@@ -318,7 +375,27 @@
 <!-- JavaScript for login check and custom alert from Syntax 1 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
 <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
-<script src="{{ asset('assets/js/app.js')}}"
+<script src="{{ asset('assets/js/app.js') }}"></script>
+
+<!-- JavaScript to Show Modal -->
+<script>
+  // Fungsi untuk menampilkan modal login
+  function showLoginModal() {
+      document.getElementById('loginModal').classList.remove('hidden');
+  }
+
+  // Fungsi untuk menutup modal login
+  function hideLoginModal() {
+      document.getElementById('loginModal').classList.add('hidden');
+  }
+
+  // Menambahkan event listener untuk menutup modal saat klik di luar modal
+  document.getElementById('loginModal').addEventListener('click', function(event) {
+      hideLoginModal();
+  });
+</script>
+
+
 
 
   @endsection

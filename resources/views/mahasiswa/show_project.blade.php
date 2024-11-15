@@ -1,7 +1,6 @@
 @extends('layouts.header')
 
 @section('content')
-
 <div class="container mx-auto py-10 mt-10">
     @if (session('success'))
         <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4" role="alert">
@@ -24,14 +23,14 @@
 
             <div class="flex space-x-4">
                 <a href="{{ route('mahasiswa.pekerjaan') }}" class="bg-gray-300 text-gray-700 px-4 py-2 rounded-full hover:bg-gray-400">Back to Projects</a>
-                <button type="button" class="bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600" data-bs-toggle="modal" data-bs-target="#applyModal">Apply</button>
+                <button type="button" class="bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600" onclick="showModal()">Apply</button>
             </div>
         </div>
     </div>
 </div>
 
 <!-- Apply Modal -->
-<div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 hidden" id="applyModal">
+<div class="fixed inset-0 flex items-center justify-center z-50 hidden" id="applyModal" style="background-color: rgba(0, 0, 0, 0.3);">
     <div class="bg-white rounded-lg shadow-lg w-full max-w-md mx-auto p-6">
         <div class="flex justify-between items-center border-b pb-4 mb-4">
             <h5 class="text-lg font-semibold">Apply for {{ $project->posisi }}</h5>
@@ -83,6 +82,14 @@
 </div>
 
 <script>
+    function showModal() {
+        document.getElementById('applyModal').classList.remove('hidden');
+    }
+
+    function closeModal() {
+        document.getElementById('applyModal').classList.add('hidden');
+    }
+
     function addOrganisasiField() {
         const container = document.getElementById('organisasi-list');
         const input = document.createElement('input');
@@ -101,10 +108,6 @@
         input.placeholder = 'Pengalaman Kerja lainnya';
         input.classList.add('mt-1', 'block', 'w-full', 'border-gray-300', 'rounded-md', 'shadow-sm', 'focus:border-teal-500', 'focus:ring', 'focus:ring-teal-500', 'focus:ring-opacity-50', 'mb-2');
         container.appendChild(input);
-    }
-
-    function closeModal() {
-        document.getElementById('applyModal').classList.add('hidden');
     }
 </script>
 @endsection

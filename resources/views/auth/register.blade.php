@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register Mahasiswa Gerai UMKM</title>
     <link rel="stylesheet" href="./css/style.css">
+    <link href="{{ asset('assets/img/logo.png') }}" rel="icon" type="image/png">
+
     @vite('resources/css/app.css')
 </head>
 

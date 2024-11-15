@@ -56,7 +56,7 @@
         </div>
     </div>
 
-    <div id="tips" class="tab-content hidden">
+    <div id="tips" class="tab-content hidden m-10">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
             @foreach ($artikel->where('category', 'tips') as $item)
                 <div class="bg-white shadow-lg rounded-lg overflow-hidden">

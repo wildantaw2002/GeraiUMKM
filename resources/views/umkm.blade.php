@@ -13,20 +13,20 @@
     <section id="umkm" class="py-16 px-10">
         <div class="container mx-auto">
             @foreach (['F&B', 'Retail', 'Jasa', 'Produksi', 'Pendidikan', 'Kesehatan dan Kecantikan', 'Teknologi dan Digital', 'Pariwisata dan Hospitality', 'Agribisnis', 'Kesenian dan Hiburan', 'Lainnya'] as $category)
-                <div class="category-section mb-10">
-                    <h3 class="text-xl font-bold mb-4">{{ $category }}</h3>
-                    <div class="flex overflow-x-scroll space-x-6">
-                        @foreach ($umkms->where('kategori', $category) as $umkm)
+            <div id="{{ Str::slug($category, '-') }}" class="category-section mb-10">
+                <h3 class="text-xl font-bold mb-4">{{ $category }}</h3>
+                <div class="flex overflow-x-scroll space-x-6">
+                    @foreach ($umkms->where('kategori', $category) as $umkm)
                         <div class="w-80 flex-none bg-white rounded-lg shadow-md p-4 flex flex-col">
                             <img src="{{ $umkm->foto_profil ? Storage::url('umkm/foto_profil/' . $umkm->foto_profil) : asset('images/default.png') }}" class="w-full h-48 object-cover rounded-t-lg mb-4" alt="{{ $umkm->nama_umkm }}">
                             <h5 class="font-bold">{{ $umkm->nama_umkm }}</h5>
                             <p class="text-gray-500">{{ \Illuminate\Support\Str::limit($umkm->deskripsi, 100) }}</p>
                             <a href="{{ route('umkm.show', $umkm->id) }}" class="btn btn-primary mt-auto bg-teal-500 text-white rounded-lg p-2 mt-4">Lihat Detail</a>
                         </div>
-                        @endforeach
-                    </div>
+                    @endforeach
                 </div>
-            @endforeach
+            </div>
+        @endforeach
         </div>
     </section>
 
@@ -42,5 +42,19 @@
             document.getElementById('mobile-menu').classList.toggle('hidden');
         });
     </script>
+
+    <script>
+    // Ambil hash dari URL
+    document.addEventListener('DOMContentLoaded', function () {
+        const hash = window.location.hash;
+        if (hash) {
+            const target = document.querySelector(hash);
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    });
+</script>
+
 </body>
 </html>

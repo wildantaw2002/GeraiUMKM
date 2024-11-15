@@ -58,6 +58,7 @@ Route::middleware(['auth', RoleMiddleware::class . ':mahasiswa'])->group(functio
 
     Route::get('/mahasiswa/chatbot', [ChatBotController::class, 'index'])->name('mahasiswa.chatbot');
     Route::post('/mahasiswa/chatbot/send', [ChatBotController::class, 'processChat'])->name('mahasiswa.chatbot.send');
+
 });
 
 // Middleware untuk umkm
@@ -90,6 +91,10 @@ Route::middleware(['auth', RoleMiddleware::class . ':umkm'])->group(function () 
     Route::delete('/umkm/pekerjaan/{id}', [PekerjaanController::class, 'destroy'])->name('umkm.pekerjaan.destroy');
     Route::patch('/umkm/pekerjaan/{id}/archive', [PekerjaanController::class, 'archive'])->name('umkm.pekerjaan.archive');
     Route::patch('/umkm/pekerjaan/{id}/unarchive', [PekerjaanController::class, 'unarchive'])->name('umkm.pekerjaan.unarchive');
+
+     // Route ChatBot untuk UMKM
+     Route::get('/umkm/chatbot', [ChatBotController::class, 'umkmIndex'])->name('umkm.chatbot');
+     Route::post('/umkm/chatbot/send', [ChatBotController::class, 'processChat'])->name('umkm.chatbot.send');
 
     Route::get('/umkm/chat', function () {
         return redirect()->route(config('chatify.routes.prefix'));  // Redirects to /

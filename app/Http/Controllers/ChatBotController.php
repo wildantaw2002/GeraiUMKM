@@ -9,10 +9,16 @@ class ChatBotController extends Controller
 {
     public function index()
     {
-        // Dapatkan sesi percakapan dari sesi pengguna, atau mulai dengan pesan awal
-        $context = session()->get('chat', [['role' => 'assistant', 'content' => 'Halo! Ada yang bisa saya bantu?']]);
-        
+        // ChatBot untuk mahasiswa
+        $context = session()->get('chat', [['role' => 'assistant', 'content' => 'Halo Mahasiswa! Ada yang bisa saya bantu?']]);
         return view('chatBot', compact('context'));
+    }
+
+    public function umkmIndex()
+    {
+        // ChatBot untuk UMKM
+        $context = session()->get('chat_umkm', [['role' => 'assistant', 'content' => 'Halo UMKM! Ada yang bisa saya bantu?']]);
+        return view('umkm.chatbot.index', compact('context'));
     }
 
     public function processChat(Request $request)
@@ -21,19 +27,25 @@ class ChatBotController extends Controller
         
         // Validasi apakah input kosong
         if (empty($content)) {
-            return redirect()->route('mahasiswa.chatbot')->with('error', 'Pesan tidak boleh kosong.');
+            $route = $request->route()->named('umkm.chatbot.send') ? 'umkm.chatbot' : 'mahasiswa.chatbot';
+            return redirect()->route($route)->with('error', 'Pesan tidak boleh kosong.');
         }
 
+        // Tentukan apakah pengguna berasal dari mahasiswa atau UMKM
+        $isUmkm = $request->route()->named('umkm.chatbot.send');
+        $sessionKey = $isUmkm ? 'chat_umkm' : 'chat';
+
         // Dapatkan sesi percakapan atau inisialisasi jika belum ada
-        $context = session()->get('chat', [['role' => 'assistant', 'content' => 'Halo! Ada yang bisa saya bantu?']]);
+        $context = session()->get($sessionKey, [['role' => 'assistant', 'content' => $isUmkm ? 'Halo UMKM! Ada yang bisa saya bantu?' : 'Halo Mahasiswa! Ada yang bisa saya bantu?']]);
         
         // Tambahkan pesan pengguna ke konteks
         $context[] = ['role' => 'user', 'content' => $content];
 
         // Ambil API Key dari .env
-        $yourApiKey = getenv('OPENAI_API_KEY');
+        $yourApiKey = env('OPENAI_API_KEY');
         if (!$yourApiKey) {
-            return redirect()->route('mahasiswa.chatbot')->with('error', 'API Key tidak ditemukan.');
+            $route = $isUmkm ? 'umkm.chatbot' : 'mahasiswa.chatbot';
+            return redirect()->route($route)->with('error', 'API Key tidak ditemukan.');
         }
 
         // Buat client OpenAI
@@ -51,8 +63,9 @@ class ChatBotController extends Controller
         }
 
         // Simpan konteks percakapan di sesi
-        session(['chat' => $context]);
+        session([$sessionKey => $context]);
 
-        return redirect()->route('mahasiswa.chatbot');
+        $route = $isUmkm ? 'umkm.chatbot' : 'mahasiswa.chatbot';
+        return redirect()->route($route);
     }
 }

@@ -25,6 +25,13 @@
             </a>
         </li>
         <li class="nav-item">
+            <a class="nav-link {{ Request::routeIs('umkm.chatbot') ? 'active' : '' }}" href="{{ route('umkm.chatbot') }}">
+                <i class="bi bi-robot"></i> <!-- ChatBot icon -->
+                <span>ChatBot</span>
+            </a>
+        </li>
+        
+        <li class="nav-item">
             <a class="nav-link {{ Request::routeIs('umkm.pekerjaan.index') ? 'active' : '' }}" href="{{ route('umkm.pekerjaan.index') }}">
                 <i class="bi bi-kanban"></i> <!-- Project icon -->
                 <span>Project</span>
