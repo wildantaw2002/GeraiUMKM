@@ -5,12 +5,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="author" content="Untree.co">
-    <link rel="shortcut icon" href="{{ asset('favicon.png') }}">
+    <link href="{{ asset('assets/img/logo.png') }}" rel="icon" type="image/png">
+
 
     <meta name="description" content="{{ $artikel->judul }}" />
     <meta name="keywords" content="event, UMKM, {{ $artikel->judul }}" />
 
-    <title>{{ $artikel->judul }} | Pos UMKM</title>
+    <title>{{ $artikel->judul }} | GeraiUMKM</title>
 
     <!-- Tailwind CSS -->
     @vite('resources/css/app.css')

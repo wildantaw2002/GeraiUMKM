@@ -104,37 +104,37 @@
         </div>
     </div>
 
-    <!-- Card Active Project -->
-    <div class="flex items-center space-x-6 bg-white p-8 rounded-lg shadow-md mt-8">
-        <div class="w-full">
-            <h3 class="text-lg font-bold border-b pb-2 mb-4">Active Project</h3>
-            <ul class="list-disc list-inside text-gray-800">
-                @if (count($projectsData['active']) == 0)
-                    <p>Data tidak ditemukan</p>
-                @else
-                    @foreach ($projectsData['active'] as $item)
-                        <li>{{ $item->project->posisi }}</li>
-                    @endforeach
-                @endif
-            </ul>
-        </div>
+<!-- Card Active Project -->
+<div class="bg-white p-8 rounded-lg shadow-md mt-8">
+    <h3 class="text-lg font-bold border-b pb-2 mb-4">Active Project</h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        @if (count($projectsData['active']) == 0)
+            <p class="text-gray-500">Data tidak ditemukan</p>
+        @else
+            @foreach ($projectsData['active'] as $item)
+                <div class="bg-teal-200 p-4 rounded-lg shadow-lg hover:bg-teal-300 transition duration-300">
+                    <h4 class="text-lg font-bold text-teal-800">{{ $item->project->posisi }}</h4>
+                </div>
+            @endforeach
+        @endif
     </div>
+</div>
 
-    <!-- Card Project History -->
-    <div class="flex items-center space-x-6 bg-white p-8 rounded-lg shadow-md mt-8">
-        <div class="w-full">
-            <h3 class="text-lg font-bold border-b pb-2 mb-4">Project History</h3>
-            <ul class="list-disc list-inside text-gray-800">
-                @if (count($projectsData['history']) == 0)
-                    <p>Data tidak ditemukan</p>
-                @else
-                    @foreach ($projectsData['history'] as $item)
-                        <li>{{ $item->project->posisi }}</li>
-                    @endforeach
-                @endif
-            </ul>
-        </div>
+<!-- Card Project History -->
+<div class="bg-white p-8 rounded-lg shadow-md mt-8">
+    <h3 class="text-lg font-bold border-b pb-2 mb-4">Project History</h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        @if (count($projectsData['history']) == 0)
+            <p class="text-gray-500">Data tidak ditemukan</p>
+        @else
+            @foreach ($projectsData['history'] as $item)
+                <div class="bg-red-200 p-4 rounded-lg shadow-lg hover:bg-red-300 transition duration-300">
+                    <h4 class="text-lg font-bold text-red-800">{{ $item->project->posisi }}</h4>
+                </div>
+            @endforeach
+        @endif
     </div>
+</div>
 </div>
 
 <button id="scrollToTop"

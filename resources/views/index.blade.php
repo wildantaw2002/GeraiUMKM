@@ -177,7 +177,7 @@ Explore More
 </div>
 
 <!-- About Section -->
-<section id ="about"  class="max-w-7xl mx-auto px-6 py-16 flex flex-col md:flex-row items-center space-y-8 md:space-y-0 md:space-x-8">
+<section class="max-w-7xl mx-auto px-6 py-16 flex flex-col md:flex-row items-center space-y-8 md:space-y-0 md:space-x-8">
   <div class="md:w-1/2 space-y-6">
     <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Tentang Kami</h2>
     <h3 class="text-2xl font-semibold text-green-600">Visi</h3>
@@ -192,9 +192,9 @@ Explore More
     </ul>
   </div>
   <div class="md:w-1/2 flex flex-col space-y-4">
-    <div class="relative bg-gray-300 rounded-lg h-48 flex items-center justify-center">
+    <div class="relative rounded-lg h-100 flex items-center justify-center">
+      <img src="{{ asset('assets/img/wrg.png') }}" alt="Warung" class="object-cover w-full h-full rounded-lg">
     </div>
-    <div class="bg-gray-300 rounded-lg h-32"></div>
   </div>
 </section>
 
@@ -208,11 +208,9 @@ Explore More
 
     <!-- Placeholder Image Grid -->
     <div class="grid grid-cols-2 gap-4 md:w-1/2 mb-8 md:mb-0">
-      <div class="bg-gray-300 rounded-lg h-48"></div>
-      <div class="bg-gray-300 rounded-lg h-48"></div>
-      <div class="bg-gray-300 rounded-lg h-64 col-span-2"></div>
-      <div class="bg-gray-300 rounded-lg h-32"></div>
-      <div class="bg-gray-300 rounded-lg h-32"></div>
+    
+      <div class="rounded-lg h-64 col-span-2"><img src="{{ asset ('assets/img/manfaat.png')}}" alt=""></div>
+  
     </div>
 
     <!-- Benefits List Section -->

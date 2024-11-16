@@ -4,7 +4,7 @@
         <!-- Logo and Slogan -->
         <div class="flex flex-col items-center mb-6 md:mb-0">
             <img src="{{ asset('assets/img/logoText.png') }}" alt="POS UMKM Logo" class="h-10 w-auto mb-4">
-            <p class="text-sm max-w-md">Wujudkan potensi maksimal Anda bersama kami.</p>
+
         </div>
        
     </div>
@@ -12,7 +12,7 @@
     <!-- Bottom Border and Copyright -->
     <div class="container mx-auto mt-8 border-t border-white opacity-50"></div>
     <div class="container mx-auto mt-4 text-center">
-        <span class="text-sm text-custom-navy">
+        <span class="text-sm text-white">
             © 2024 <a href="#" class="hover:underline">Warga Provoks™</a>. Dibuat dengan penuh cinta ❤️ oleh Warga Provoks.
         </span>
     </div>

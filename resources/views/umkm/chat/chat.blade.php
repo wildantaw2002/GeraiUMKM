@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat</title>
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+    <link href="{{ asset('assets/img/favicon.png') }}" rel="icon" type="image/png">
+
 </head>
 <body>
     <div class="container">

@@ -16,7 +16,6 @@
         @foreach($categories as $category)
             <div class="category-section mb-10">
                 <h3 class="text-xl font-bold mb-4">{{ $category }}</h3>
-                <p class="mb-4">Temukan pekerjaan menarik di bidang {{ $category }}.</p>
                 <div class="flex overflow-x-scroll space-x-6">
                     @php
                         $jobs = App\Models\pekerjaan::where('kategori', $category)
@@ -25,8 +24,24 @@
                     @endphp
 
                     @foreach($jobs as $job)
+                        @php
+                            // Tentukan path gambar berdasarkan kategori
+                            $imagePath = match($job->kategori) {
+                                'Agrikultur' => asset('assets/img/Agrikultur.png'),
+                                'Akuntansi' => asset('assets/img/Akuntansi.png'),
+                                'Edukasi' => asset('assets/img/Edukasi.png'),
+                                'Finance' => asset('assets/img/Finance.png'),
+                                'Teknologi' => asset('assets/img/Teknologi.jpg'),
+                                'Kesehatan' => asset('assets/img/Kesehatan.png'),
+                                'Kreatif' => asset('assets/img/Kreatif.png'),
+                                'Lingkungan' => asset('assets/img/Lingkungan.png'),
+                                'Sosial' => asset('assets/img/Sosial.png'),
+                                'Marketing' => asset('assets/img/Marketing.png'),
+                                default => asset('assets/img/Lainnya.png'),
+                            };
+                        @endphp
                         <div class="w-80 flex-none bg-white rounded-lg shadow-md p-4 flex flex-col">
-                            <img src="{{ asset('images/logosme.jpg') }}" class="w-full h-48 object-cover rounded-t-lg mb-4" alt="{{ $job->posisi }}">
+                            <img src="{{ $imagePath }}" class="w-full h-48 object-cover rounded-t-lg mb-4" alt="{{ $job->posisi }}">
                             <h5 class="font-bold">{{ $job->posisi }}</h5>
                             <strong class="text-gray-700">{{ $job->tempat_bekerja }}</strong>
                             <a href="{{ route('mahasiswa.pekerjaan.show', $job->id) }}" class="mt-auto bg-teal-500 text-white rounded-lg p-2 mt-4 text-center hover:bg-teal-600">Lihat Detail</a>
