@@ -9,7 +9,7 @@
       Belajar dan <span class="text-teal-700">Berkembang</span> Tanpa Batas
     </h1>
     <p class="text-gray-600 text-lg">
-      Gerai UMKM adalah sebuah bisnis sociopreneurship yang berfokus pada pemberdayaan pendidikan dan pertumbuhan UMKM. Kami menghubungkan mahasiswa, dosen, masyarakat, dan pelaku usaha menengah ke bawah untuk menciptakan solusi inovatif.
+      Gerai UMKM adalah sebuah bisnis sociopreneurship yang berfokus pada pemberdayaan pendidikan dan pertumbuhan UMKM. Kami menghubungkan mahasiswa, dan pelaku usaha menengah ke bawah untuk menciptakan solusi inovatif.
     </p>
     <button onclick="document.getElementById('trust-section').scrollIntoView({ behavior: 'smooth' });" 
     class="bg-teal-700 text-white px-8 py-3 rounded-full font-semibold text-lg">
