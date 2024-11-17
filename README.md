@@ -1,66 +1,75 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Gerai UMKM
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+![Logo Gerai UMKM](./public/assets/img/logo.png)
 
-## About Laravel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Gerai UMKM adalah sebuah platform yang menjembatani pelaku UMKM dan mahasiswa. Website ini bertujuan untuk memberikan peluang bagi mahasiswa untuk mengembangkan kemampuan mereka dengan berkontribusi pada proyek yang disediakan oleh UMKM. Platform ini menyediakan fitur untuk 3 jenis pengguna: **Superadmin (Pemilik), Admin (UMKM), dan Mahasiswa**.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Fitur Utama
 
-## Learning Laravel
+### **1. Superadmin (Pemilik)**
+Superadmin memiliki akses penuh untuk mengelola seluruh aktivitas di platform melalui fitur-fitur berikut:
+- **Dashboard**: Menampilkan data statistik jumlah UMKM dan mahasiswa yang terdaftar, termasuk status verifikasi dan keterlibatan mereka.
+- **Mahasiswa**: Mengelola dan memperbarui data mahasiswa yang terdaftar, termasuk riwayat akademik dan status keterlibatan.
+- **Artikel**: Membuat, mengedit, melihat, dan menghapus artikel di platform.
+- **UMKM**: Memantau dan mengelola akun UMKM, termasuk verifikasi, pembaruan profil, dan aktivitas mereka.
+- **Project UMKM**: Menambahkan proyek baru, memantau status proyek, dan mengelola rincian proyek UMKM.
+- **Chat**: Berkomunikasi secara real-time dengan mahasiswa dan admin melalui fitur obrolan.
+- **Konsultasi Bisnis**: Memberikan tanggapan dan feedback untuk konsultasi bisnis dari UMKM.
+- **Verifikasi UMKM**: Memverifikasi data UMKM yang mendaftar untuk memastikan validitas dan kualitas layanan.
+- **Kelola Sertifikat Mahasiswa**: Mengirimkan sertifikat melalui email kepada mahasiswa yang telah menyelesaikan proyek.
+- **Ganti Password**: Mengelola keamanan akun Superadmin.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### **2. Admin (UMKM)**
+Admin dapat mengelola informasi dan proyek UMKM melalui fitur berikut:
+- **Dashboard**: Informasi profil UMKM, termasuk foto profil dan deskripsi bisnis.
+- **Artikel**: Membuat, mengedit, menghapus, dan mengelola artikel yang akan dipublikasikan.
+- **Lamaran**: Mengelola lamaran mahasiswa yang masuk untuk proyek UMKM.
+- **Chat**: Berkomunikasi dengan mahasiswa dan Superadmin secara real-time.
+- **Chatbot**: Layanan interaktif otomatis untuk menjawab pertanyaan terkait bisnis UMKM.
+- **Project**: Menambahkan, mengedit, dan mengelola proyek UMKM yang terdaftar di platform.
+- **Konsultasi**: Mengajukan permohonan konsultasi untuk mendapatkan panduan dari Superadmin.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### **3. User (Mahasiswa)**
+Mahasiswa dapat memanfaatkan fitur berikut:
+- **Dashboard**: Pusat informasi dengan akses ke fitur utama seperti Project, UMKM, Artikel, dan Profil.
+- **UMKM**: Menjelajahi daftar UMKM dengan informasi profil dan kategori bisnis.
+- **Project**: Melihat dan melamar proyek yang tersedia berdasarkan kategori minat.
+- **Artikel**: Membaca artikel tentang UMKM, tips bisnis, dan pengembangan karier.
+- **Profile**: Mengelola informasi pribadi, melacak proyek, dan memperbarui profil.
+- **Chat**: Berkomunikasi secara langsung dengan admin dan Superadmin.
+- **ChatBot**: Mendapatkan panduan otomatis menggunakan API ChatGPT.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+---
 
-## Laravel Sponsors
+## Autentikasi Akun
+Gunakan akun berikut untuk mengakses berbagai role di platform:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### Superadmin
+- **Email**: `unitrade@gmail.com`
+- **Password**: `uni123`
 
-### Premium Partners
+### Admin (UMKM)
+- **Email**: `mybengkel@gmail.com`
+- **Password**: `bengkel123`
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+### User (Mahasiswa)
+- **Email**: `kadavi0934@gmail.com`
+- **Password**: `dapi123`
 
-## Contributing
+---
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Struktur Proyek
+- **Frontend**: Menggunakan framework **Next.js** dengan styling **Tailwind CSS**.
+- **Backend**: Dibangun dengan **Laravel** menggunakan database MySQL.
+- **Chat**: Implementasi real-time chat menggunakan **Laravel WebSocket** (Pusher) dan **Chatify**.
+- **API Chatbot**: Mengintegrasikan API **ChatGPT** untuk fitur chatbot.
 
-## Code of Conduct
+---
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Cara Instalasi dan Penggunaan
+### 1. Clone Repository
+```bash
+git clone https://github.com/your-repository/gerai-umkm.git
