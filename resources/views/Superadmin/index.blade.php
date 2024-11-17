@@ -6,7 +6,7 @@
 <section class="section dashboard">
     <!-- Banner Section -->
     <div class="banner mb-4">
-        <img src="{{ asset('images/banner_pos_umkm.png') }}" alt="POS UMKM Banner" class="img-fluid rounded">
+        <img src="{{ asset('assets/img/banner_pos_umkm.png') }}" alt="POS UMKM Banner" class="img-fluid rounded">
         <div class="banner-text">
             <h1 class="fw-bold text-white">POS UMKM</h1>
             <p class="lead text-white">Menghubungkan Mahasiswa dengan UMKM untuk Meningkatkan Ekosistem Bisnis</p>

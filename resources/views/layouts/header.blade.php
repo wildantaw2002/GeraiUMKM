@@ -57,7 +57,6 @@
         <div class="hidden md:flex items-center space-x-4">
             @if (Auth::check())
                 <!-- When user is logged in -->
-                <a href="#" class="text-gray-600"><img src="{{ asset('images/user.svg') }}" class="h-6 w-6"></a>
                 <form action="{{ route('logout') }}" method="POST" class="inline">
                     @csrf
                     <button type="submit" class="bg-teal-700 text-white px-4 py-2 rounded-full font-semibold">Logout</button>
@@ -96,7 +95,7 @@
                         <button type="submit" class="w-full bg-teal-700 text-white px-4 py-2 rounded-full font-semibold">Logout</button>
                     </form>
                 @else
-                    <a href="{{ route('login') }}" class="block text-teal-700 font-semibold">Daftar</a>
+                    <a href="{{ route('login') }}" class="w-full bg-teal-700 text-white px-4 py-2 rounded-full font-semibold mt-4 inline-block text-center">Daftar</a>
                     <a href="{{ route('login') }}" class="w-full bg-teal-700 text-white px-4 py-2 rounded-full font-semibold mt-4 inline-block text-center">Masuk</a>
                 @endif
             </div>

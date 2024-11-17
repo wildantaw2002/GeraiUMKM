@@ -36,7 +36,7 @@
         <!-- Left Section (UMKM Detail) -->
         <div class="w-full lg:w-2/3 mb-6 lg:mb-0" data-aos="fade-up">
             <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-transform transform hover:-translate-y-2">
-                <img src="{{ $umkm->foto_sampul ? Storage::url('umkm/foto_sampul/' . $umkm->foto_sampul) : asset('images/sampul.png') }}" class="w-full h-64 object-cover" alt="{{ $umkm->nama_umkm }}">
+                <img src="{{ $umkm->foto_sampul ? Storage::url('umkm/foto_sampul/' . $umkm->foto_sampul) : asset('assets/img/sampul.png') }}" class="w-full h-64 object-cover" alt="{{ $umkm->nama_umkm }}">
                 <div class="p-8">
                     <h3 class="text-2xl font-semibold mb-4">Tentang {{ $umkm->nama_umkm }}</h3>
                     <p class="text-gray-700 mb-6">{{ $umkm->deskripsi }}</p>

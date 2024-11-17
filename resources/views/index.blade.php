@@ -103,65 +103,71 @@ Explore More
     </div>
   </div>
 </section>
-
+<br>
 <!-- Section Project Content -->
-<section class="py-16 px-10 mt-15">
-  <div class="container mx-auto px-6 flex items-center space-x-6">
+<section class="py-16 px-4 mt-15">
+  <div class="container mx-auto flex flex-wrap space-y-6 md:space-y-0 md:space-x-6">
       
-      <!-- Introductory Text -->
-      <div class="w-1/4 mb-5 fade-in">
-          <h2 class="text-2xl font-bold mb-4 text-custom-navy">Temukan Project dengan mudah</h2>
-          <p class="text-gray-700 mb-4">
-              Temukan berbagai proyek yang sesuai dengan minat dan keahlian Anda dengan mudah. Kami menyediakan platform yang memudahkan kolaborasi dan memberikan akses ke peluang terbaik.
-          </p>
-          <p>
-              @auth
-                  @if(auth()->user()->role == 'mahasiswa')
-                      <a href="{{ route('mahasiswa.pekerjaan') }}" class="bg-teal-500 text-white py-2 px-4 rounded-lg hover:bg-teal-600">
-                          Explore
-                      </a>
-                  @else
-                      <button onclick="showLoginModal()" class="bg-teal-500 text-white py-2 px-4 rounded-lg hover:bg-teal-600">
-                          Explore
-                      </button>
-                  @endif
-              @else
-                  <button onclick="showLoginModal()" class="bg-teal-500 text-white py-2 px-4 rounded-lg hover:bg-teal-600">
-                      Explore
-                  </button>
-              @endauth
-          </p>
-      </div>
+     <!-- Introductory Text -->
+<div class="w-full md:w-1/4 mb-5 fade-in flex items-center justify-center">
+  <h2 class="text-2xl font-bold mb-4 text-custom-navy">Temukan Project dengan mudah</h2>
+</div>
+
+    
 
       <!-- Slider Wrapper with Job Cards -->
-      <div class="w-3/4 overflow-hidden ml-6">
-          <div id="slider" class="flex transition-transform duration-300 space-x-4">
-              <!-- Job Cards (Dynamically Generated) -->
-              @foreach ($pekerjaan as $item)
-                  <div class="w-80 flex-none bg-white rounded-lg shadow-md p-4 flex flex-col items-center justify-center transform transition duration-200 hover:scale-105">
-                      <img src="{{ asset('images/complete.png') }}" class="w-full h-32 object-cover rounded-lg mb-4" alt="{{ $item->posisi }}">
-                      <h3 class="text-teal-600 font-semibold text-lg mb-1">{{ $item->posisi }}</h3>
-                      <p class="text-gray-600 mb-1">{{ Str::limit($item->deskripsi, 100) }}</p>
-                      <span class="text-gray-500 text-sm">{{ $item->tempat_bekerja }}</span>
-                      @auth
-                          @if(auth()->user()->role == 'mahasiswa')
-                              <a href="{{ route('mahasiswa.pekerjaan.show', $item->id) }}" class="bg-teal-500 text-white mt-4 py-2 px-4 rounded-lg hover:bg-teal-600">
-                                  Lihat Detail
-                              </a>
-                          @else
-                              <button onclick="showLoginModal()" class="bg-teal-500 text-white mt-4 py-2 px-4 rounded-lg hover:bg-teal-600">
-                                  Lihat Detail
-                              </button>
-                          @endif
+      <div class="w-full md:w-3/4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+          <!-- Job Cards (Dynamically Generated) -->
+          @foreach ($pekerjaan as $item)
+              <div class="bg-white rounded-lg shadow-md p-4 flex flex-col items-center justify-center transform transition duration-200 hover:scale-105">
+                  <img src="{{ asset('assets/img/complete.png') }}" 
+                  class="w-full h-32 object-contain rounded-lg mb-4" 
+                  alt="{{ $item->posisi }}">
+                  <h3 class="text-teal-600 font-semibold text-lg mb-1">{{ $item->posisi }}</h3>
+                  <p class="text-gray-600 mb-1">{{ Str::limit($item->deskripsi, 100) }}</p>
+                  <br>  
+                  <span class="text-white bg-green-500 text-sm rounded-md ">{{ $item->tempat_bekerja }}</span>
+                  @auth
+                      @if(auth()->user()->role == 'mahasiswa')
+                          <a href="{{ route('mahasiswa.pekerjaan.show', $item->id) }}" class="bg-teal-500 text-white mt-4 py-2 px-4 rounded-lg hover:bg-teal-600">
+                              Lihat Detail
+                          </a>
                       @else
                           <button onclick="showLoginModal()" class="bg-teal-500 text-white mt-4 py-2 px-4 rounded-lg hover:bg-teal-600">
                               Lihat Detail
                           </button>
-                      @endauth
-                  </div>
-              @endforeach
-          </div>
+                      @endif
+                  @else
+                      <button onclick="showLoginModal()" class="bg-teal-500 text-white mt-4 py-2 px-4 rounded-lg hover:bg-teal-600">
+                          Lihat Detail
+                      </button>
+                  @endauth
+              </div>
+          @endforeach
       </div>
+<br>
+<br>
+      <!-- Button Explore -->
+<div class="w-full text-center mt-6">
+  @auth
+      @if(auth()->user()->role == 'mahasiswa')
+          <a href="{{ route('mahasiswa.pekerjaan') }}" 
+             class="border-2 border-teal-500 text-teal-500 py-2 px-4 rounded-lg transition hover:bg-teal-500 hover:text-white">
+              Explore
+          </a>
+      @else
+          <button onclick="showLoginModal()" 
+                  class="border-2 border-teal-500 text-teal-500 py-2 px-4 rounded-lg transition hover:bg-teal-500 hover:text-white">
+              Explore
+          </button>
+      @endif
+  @else
+      <button onclick="showLoginModal()" 
+              class="border-2 border-teal-500 text-teal-500 py-2 px-4 rounded-lg transition hover:bg-teal-500 hover:text-white">
+          Explore
+      </button>
+  @endauth
+</div>
   </div>
 </section>
 
@@ -212,6 +218,13 @@ Explore More
       <div class="rounded-lg h-64 col-span-2"><img src="{{ asset ('assets/img/manfaat.png')}}" alt=""></div>
   
     </div>
+    
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
 
     <!-- Benefits List Section -->
     <div class="md:w-1/2 flex flex-col justify-center space-y-8">
