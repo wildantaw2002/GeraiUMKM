@@ -62,7 +62,7 @@ Gunakan akun berikut untuk mengakses berbagai role di platform:
 ---
 
 ## Struktur Proyek
-- **Frontend**: Menggunakan framework **Next.js** dengan styling **Tailwind CSS**.
+- **Frontend**: Menggunakan framework **blade.php** dengan styling **Tailwind CSS**.
 - **Backend**: Dibangun dengan **Laravel** menggunakan database MySQL.
 - **Chat**: Implementasi real-time chat menggunakan **Laravel WebSocket** (Pusher) dan **Chatify**.
 - **API Chatbot**: Mengintegrasikan API **ChatGPT** untuk fitur chatbot.
